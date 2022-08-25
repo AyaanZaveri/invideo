@@ -2,21 +2,22 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 
 const Card = ({ videoData }: any) => {
+  const [channelData, setChannelData] = useState<any>();
 
-  // const [channelData, setChannelData] = useState<any>()
+  const getChannelData = (id: string) => {
+    axios
+      .get(`https://inv.vern.cc/api/v1/channels/${id}`)
+      .then((res) => setChannelData(res.data));
+  };
 
-  // const getChannelData = (id: string) => {
-  //   axios.get(`https://inv.vern.cc/api/v1/channels/${id}`).then(res => setChannelData(res.data))
-  // };
-
-  // useEffect(() => {
-  //   getChannelData(videoData?.authorId)
-  // }, [])
+  useEffect(() => {
+    getChannelData(videoData?.authorId);
+  }, []);
 
   return (
     <div>
       {videoData.type == "video" ? (
-        <div className="w-64 flex flex-col">
+        <div className="w-64 flex flex-col gap-2">
           <img
             src={
               videoData?.videoThumbnails?.length > 0
@@ -26,8 +27,20 @@ const Card = ({ videoData }: any) => {
             className="rounded-lg"
             alt=""
           />
-          <div className="flex-">
-
+          <div className="flex flex-col gap-0.5">
+            <span className="text-sm font-bold">{videoData?.title}</span>
+            <span className="text-xs font-semibold text-orange-500">
+              {videoData?.author}
+            </span>
+            <div className="flex flex-row">
+              <span className="text-xs font-semibold text-orange-900">
+                {String(videoData?.viewCount).replace(
+                  /(.)(?=(\d{3})+$)/g,
+                  "$1,"
+                )}{" "}
+                Views · {videoData?.publishedText}
+              </span>
+            </div>
           </div>
         </div>
       ) : videoData.type == "channel" ? (
