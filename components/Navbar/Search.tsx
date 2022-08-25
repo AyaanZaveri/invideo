@@ -1,15 +1,12 @@
 import axios from "axios";
-import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
 import { HiOutlineSearch } from "react-icons/hi";
 
 const Search = () => {
-  const baseUrl = "https://inv.vern.cc";
+  const baseUrl = "https://inv.vern.cc/";
 
   const [search, setSearch] = useState<string>("");
   const [searchSuggestions, setSearchSuggestions] = useState<any>([]);
-
-  const router = useRouter()
 
   const getSearchSuggestions = (query: string) => {
     axios
@@ -19,7 +16,7 @@ const Search = () => {
 
   const handleSearch = (e: any) => {
     e.preventDefault();
-    router.push(`/search?q=${search}`)
+    location.href = `/search?q=${search}`;
   };
 
   useEffect(() => {
@@ -50,7 +47,7 @@ const Search = () => {
           {searchSuggestions.length > 0 ? (
             <div className="flex flex-col w-full py-2 gap-1 rounded-lg border border-stone-300/50 select-none bg-white/75 shadow-sm shadow-stone-100 backdrop-blur-lg overflow-hidden">
               {searchSuggestions.map((v: string) => (
-                <div onClick={() => router.push(`/search?q=${v}`)}>
+                <div onClick={() => (location.href = `/search?q=${v}`)}>
                   <span className="block w-full text-sm hover:bg-orange-500/10 py-2 px-4 cursor-pointer transition active:bg-orange-500/20">
                     {v}
                   </span>

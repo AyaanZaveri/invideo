@@ -7,7 +7,7 @@ import Card from "../components/Card";
 
 const Search = () => {
   const { query } = useRouter();
-  const baseUrl = "https://inv.vern.cc";
+  const baseUrl = "https://inv.vern.cc/";
   const [searchRes, setSearchRes] = useState<any>();
 
   const getSearch = (q: string) => {
@@ -28,13 +28,17 @@ const Search = () => {
     <div className="font-['Inter']">
       <NavbarIndex />
       <Sidebar />
-      <div className="pl-52 pt-16 bg-stone-50 h-full">
-        <div className="rounded-lg flex flex-row flex-wrap justify-center gap-8 py-8">
-          {typeof searchRes !== "undefined" && searchRes.length > 0
-            ? searchRes.map((v: any) => <Card videoData={v} />)
-            : null}
+      {searchRes ? (
+        <div>
+          <div className="pl-52 pt-16 bg-stone-50 h-full">
+            <div className="rounded-lg flex flex-row flex-wrap justify-center gap-12 py-8 px-2">
+              {typeof searchRes !== "undefined" && searchRes.length > 0
+                ? searchRes.map((v: any) => <Card videoData={v} />)
+                : null}
+            </div>
+          </div>
         </div>
-      </div>
+      ) : null}
     </div>
   );
 };

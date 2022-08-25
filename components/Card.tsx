@@ -1,62 +1,83 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 
-const Card = ({ videoData }: any) => {
-  const [channelData, setChannelData] = useState<any>();
+const Card = ({ videoResults }: any) => {
+  // const [channelData, setChannelData] = useState<any>();
 
-  const getChannelData = (id: string) => {
-    axios
-      .get(`https://inv.vern.cc/api/v1/channels/${id}`)
-      .then((res) => setChannelData(res.data));
-  };
+  // const baseUrl = "https://inv.vern.cc/";
 
-  useEffect(() => {
-    getChannelData(videoData?.authorId);
-  }, []);
+  // const getChannelData = (id: string) => {
+  //   axios
+  //     .get(`${baseUrl}/api/v1/channels/${id}`)
+  //     .then((res) => setChannelData(res.data));
+  // };
+
+  // useEffect(() => {
+  //   getChannelData(videoResults?.authorId);
+  // }, []);
 
   return (
     <div>
-      {videoData.type == "video" ? (
-        <div className="w-64 flex flex-col gap-2">
+      {videoResults.type == "video" ? (
+        <div className="w-64 flex flex-col gap-2" onClick={() => location.href = `/watch?v=${videoResults?.videoId}`}>
           <img
             src={
-              videoData?.videoThumbnails?.length > 0
-                ? videoData?.videoThumbnails[0]?.url
+              videoResults?.videoThumbnails?.length > 0
+                ? videoResults?.videoThumbnails[0]?.url
                 : "https://dummyimage.com/1280x720/fff/aaa"
             }
-            className="rounded-lg"
+            className="rounded-lg shadow-lg hover:brightness-90 active:brightness-75 transition hover:cursor-pointer"
             alt=""
           />
           <div className="flex flex-col gap-0.5">
-            <span className="text-sm font-bold">{videoData?.title}</span>
+            <span className="text-sm font-bold">{videoResults?.title}</span>
             <span className="text-xs font-semibold text-orange-500">
-              {videoData?.author}
+              {videoResults?.author}
             </span>
             <div className="flex flex-row">
               <span className="text-xs font-semibold text-orange-900">
-                {String(videoData?.viewCount).replace(
+                {String(videoResults?.viewCount).replace(
                   /(.)(?=(\d{3})+$)/g,
                   "$1,"
                 )}{" "}
-                Views · {videoData?.publishedText}
+                Views · {videoResults?.publishedText}
               </span>
             </div>
           </div>
         </div>
-      ) : videoData.type == "channel" ? (
-        <div className="w-64">
+      ) : videoResults.type == "channel" ? (
+        <div className="w-64 flex items-center justify-center flex-col gap-3">
           <img
             src={
-              videoData?.authorThumbnails?.length > 0
+              videoResults?.authorThumbnails?.length > 0
                 ? "https:" +
-                  videoData?.authorThumbnails[
-                    videoData?.authorThumbnails.length - 1
+                  videoResults?.authorThumbnails[
+                    videoResults?.authorThumbnails.length - 1
                   ]?.url.replace("s88", "s176")
                 : "https://dummyimage.com/1280x720/fff/aaa"
             }
             alt=""
-            className="rounded-full w-24"
+            className="rounded-full w-24 shadow-lg"
           />
+          <div className="flex flex-col items-center justify-center">
+            <span className="font-semibold text-stone-900">
+              {videoResults?.author}
+            </span>
+            <span className="font-semibold text-sm text-orange-500">
+              {String(videoResults?.subCount).replace(/(.)(?=(\d{3})+$)/g, "$1,")}{" "}
+              Subscribers
+            </span>
+            <span className="font-semibold text-sm text-orange-900">
+              {String(videoResults?.videoCount).replace(
+                /(.)(?=(\d{3})+$)/g,
+                "$1,"
+              )}{" "}
+              Videos
+            </span>
+            <span className="font-medium text-xs text-center mt-2 text-black">
+              {videoResults?.description}
+            </span>
+          </div>
         </div>
       ) : null}
     </div>
