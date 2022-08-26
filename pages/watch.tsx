@@ -1,24 +1,45 @@
-import axios from 'axios';
-import React, { useState } from 'react'
+import axios from "axios";
+import { useRouter } from "next/router";
+import React, { useEffect, useState } from "react";
+import DashUtils from "../utils/DashUtils";
 
-const Video = () => {
+const Watch = () => {
+  const { query } = useRouter();
 
-  const [videoData, setChannelData] = useState<any>();
+  const [videoData, setVideoData] = useState<any>();
+  const [streams, setStreams] = useState<any>();
 
-  const baseUrl = "https://inv.vern.cc/";
+  const baseUrl = "https://pa.il.ax";
 
-  const getChannelData = (id: string) => {
-    axios
-      .get(`${baseUrl}/api/v1/channels/${id}`)
-      .then((res) => setChannelData(res.data));
+  const generate_dash_file_from_formats = (VideoFormats: any, VideoLength: any) => {
+    const generatedJSON: any = generate_xmljs_json_from_data(VideoFormats, VideoLength);
+    return json2xml(generatedJSON);
+}
+
+  const getVideoData = (id: string) => {
+    axios.get(`${baseUrl}/streams/${id}`).then((res) => setVideoData(res.data));
   };
 
   useEffect(() => {
-    getChannelData(videoData?.authorId);
-  }, []);
-  return (
-    <div>Video</div>
-  )
-}
+    getVideoData(query.v as string);
+  }, [query]);
 
-export default Video
+  videoData?.adaptiveFormats
+    ?.filter((video: any) => video.container == "webm")
+    ?.map((video: any) => console.log(video.resolution, video.url));
+
+  useEffect(() => {
+    setStreams([streams, videoData?.videoStreams]);
+    setStreams([streams, videoData?.audioStreams]);
+  }, [videoData])
+
+  generate_
+
+  return (
+    <div>
+
+    </div>
+  );
+};
+
+export default Watch;

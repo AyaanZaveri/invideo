@@ -4,7 +4,7 @@ import React, { useEffect, useState } from "react";
 const Card = ({ videoResults }: any) => {
   // const [channelData, setChannelData] = useState<any>();
 
-  // const baseUrl = "https://inv.vern.cc/";
+  // const baseUrl = "https://pa.il.ax/";
 
   // const getChannelData = (id: string) => {
   //   axios

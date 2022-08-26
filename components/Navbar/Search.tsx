@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import { HiOutlineSearch } from "react-icons/hi";
 
 const Search = () => {
-  const baseUrl = "https://inv.vern.cc/";
+  const baseUrl = "https://pa.il.ax";
 
   const [search, setSearch] = useState<string>("");
   const [searchSuggestions, setSearchSuggestions] = useState<any>([]);

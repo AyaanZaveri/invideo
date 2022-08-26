@@ -6,14 +6,18 @@
     "start": "next start"
   },
   "dependencies": {
+    "@vidstack/player": "^1.6.3",
+    "@vidstack/player-react": "^1.6.3",
     "axios": "^0.27.2",
     "change-case": "^4.1.2",
+    "lit": "^2.3.1",
     "luxon": "^3.0.1",
     "next": "latest",
     "react": "18.1.0",
     "react-dom": "18.1.0",
     "react-icons": "^4.4.0",
-    "title-case": "^3.0.3"
+    "title-case": "^3.0.3",
+    "xml-js": "^1.6.11"
   },
   "devDependencies": {
     "@tailwindcss/forms": "^0.5.2",
