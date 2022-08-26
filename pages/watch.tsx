@@ -7,14 +7,9 @@ const Watch = () => {
   const { query } = useRouter();
 
   const [videoData, setVideoData] = useState<any>();
-  const [streams, setStreams] = useState<any>();
+  const [streams, setStreams] = useState<any>([]);
 
   const baseUrl = "https://pa.il.ax";
-
-  const generate_dash_file_from_formats = (VideoFormats: any, VideoLength: any) => {
-    const generatedJSON: any = generate_xmljs_json_from_data(VideoFormats, VideoLength);
-    return json2xml(generatedJSON);
-}
 
   const getVideoData = (id: string) => {
     axios.get(`${baseUrl}/streams/${id}`).then((res) => setVideoData(res.data));
@@ -29,15 +24,23 @@ const Watch = () => {
     ?.map((video: any) => console.log(video.resolution, video.url));
 
   useEffect(() => {
-    setStreams([streams, videoData?.videoStreams]);
-    setStreams([streams, videoData?.audioStreams]);
-  }, [videoData])
+    setStreams([...videoData?.audioStreams, ...videoData?.videoStreams]);
+  }, [videoData]);
 
-  generate_
+  const convert = async () => {
+    await console.log(streams);
+
+    const uri = await DashUtils.generate_dash_file_from_formats(
+      streams,
+      videoData?.duration
+    );
+
+    await console.log(uri);
+  };
 
   return (
     <div>
-
+      <button onClick={() => convert()}>Convert</button>
     </div>
   );
 };
