@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
+import { DashGenerator } from "../utils/dash.generator";
 
 const Watch = () => {
   const { query } = useRouter();
@@ -14,24 +15,32 @@ const Watch = () => {
     axios.get(`${baseUrl}/videos/${id}`).then((res) => setVideoData(res.data));
   };
 
+  console.log(videoData)
+
   useEffect(() => {
     getVideoData(query.v as string);
   }, [query]);
 
-  videoData?.adaptiveFormats
-    ?.filter((video: any) => video.container == "webm")
-    ?.map((video: any) =>
-      console.log(
-        video.resolution ? video.resolution : video.audioQuality,
-        video.url
-      )
+  useEffect(() => {
+    setStreams(
+      videoData?.adaptiveFormats?.filter(
+        (video: any) => video.container == "mp4" || video.container == "m4a"
+      ),
     );
+  }, [videoData]);
+  console.log(streams);
 
-  console.log(videoData);
+  const generateDash = async () => {
+    const xml_string = DashGenerator.generateDashFileFromFormats(
+      streams,
+      videoData?.lengthSeconds
+    );
+    console.log(xml_string);
+  };
 
   return (
     <div>
-      <button>Convert</button>
+      <button onClick={() => generateDash()}>Convert</button>
     </div>
   );
 };
