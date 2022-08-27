@@ -7,13 +7,13 @@ import Card from "../components/Card";
 
 const Search = () => {
   const { query } = useRouter();
-  const baseUrl = "https://pa.il.ax";
+  const baseUrl = "https://inv.vern.cc/api/v1";
   const [searchRes, setSearchRes] = useState<any>();
 
   const getSearch = (q: string) => {
     if (typeof q !== "undefined" && q.length > 0)
       axios
-        .get(`${baseUrl}/api/v1/search?q=${q}`)
+        .get(`${baseUrl}/search?q=${q}`)
         .then((res) => setSearchRes(res.data));
   };
 
