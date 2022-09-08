@@ -3,15 +3,15 @@ import React, { useEffect, useState } from "react";
 import { HiOutlineSearch } from "react-icons/hi";
 
 const Search = () => {
-  const baseUrl = "https://inv.vern.cc/api/v1";
+  const baseUrl = "https://inv.riverside.rocks/api/v1";
 
   const [search, setSearch] = useState<string>("");
   const [searchSuggestions, setSearchSuggestions] = useState<any>([]);
 
   const getSearchSuggestions = (query: string) => {
     axios
-      .get(`${baseUrl}/suggestions?q=${query}`)
-      .then((res) => setSearchSuggestions(res.data));
+      .get(`${baseUrl}/search/suggestions?q=${query}`)
+      .then((res) => setSearchSuggestions(res.data?.suggestions));
   };
 
   const handleSearch = (e: any) => {
@@ -28,8 +28,8 @@ const Search = () => {
   return (
     <div>
       <div className="flex items-center justify-center flex-col">
-        <div className="bg-white w-full h-16 flex items-center justify-center flex-col">
-          <div className="relative rounded-md shadow-sm shadow-stone-100 w-6/12">
+        <div className="bg-white/75 backdrop-blur-md w-full h-16 flex items-center justify-center flex-col">
+          <div className="relative rounded-md shadow-sm w-6/12">
             <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
               <HiOutlineSearch className="text-gray-500 sm:text-sm" />
             </div>

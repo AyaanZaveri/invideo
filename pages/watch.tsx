@@ -1,46 +1,38 @@
 import axios from "axios";
 import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
-import { DashGenerator } from "../utils/dash.generator";
+import dynamic from "next/dynamic";
+import VideoPlayer from "../components/VideoPlayer";
+import videojs from "video.js";
 
 const Watch = () => {
   const { query } = useRouter();
+  const [watchData, setWatchData] = useState<any>();
+  const baseUrl = "https://pa.il.ax";
 
-  const [videoData, setVideoData] = useState<any>();
-  const [streams, setStreams] = useState<any>([]);
-
-  const baseUrl = "https://inv.vern.cc/api/v1";
-
-  const getVideoData = (id: string) => {
-    axios.get(`${baseUrl}/videos/${id}`).then((res) => setVideoData(res.data));
+  const getWatchData = () => {
+    axios
+      .get(`${baseUrl}/streams/${query.v}`)
+      .then((res) => setWatchData(res.data));
   };
 
-  console.log(videoData)
-
   useEffect(() => {
-    getVideoData(query.v as string);
-  }, [query]);
+    getWatchData();
+  }, [query.v]);
 
-  useEffect(() => {
-    setStreams(
-      videoData?.adaptiveFormats?.filter(
-        (video: any) => video.container == "mp4" || video.container == "m4a"
-      ),
-    );
-  }, [videoData]);
-  console.log(streams);
-
-  const generateDash = async () => {
-    const xml_string = DashGenerator.generateDashFileFromFormats(
-      streams,
-      videoData?.lengthSeconds
-    );
-    console.log(xml_string);
-  };
+  console.log(watchData?.hls);
 
   return (
     <div>
-      <button onClick={() => generateDash()}>Convert</button>
+      {watchData?.hls ? (
+        <VideoPlayer
+          width={1280}
+          height={720}
+          source={
+            "https://inv.riverside.rocks/api/manifest/dash/id/JAEfMGz1QBA?local=true"
+          }
+        />
+      ) : null}
     </div>
   );
 };

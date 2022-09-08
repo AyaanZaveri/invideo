@@ -2,28 +2,40 @@ import axios from "axios";
 import React, { useEffect, useState } from "react";
 
 const Card = ({ videoResults }: any) => {
-  // const [channelData, setChannelData] = useState<any>();
+  const [videoData, setVideoData] = useState<any>();
+  const [tags, setTags] = useState([]);
 
-  // const baseUrl = "https://inv.vern.cc/api/v1/";
+  const baseUrl = "https://inv.riverside.rocks/api/v1/";
 
-  // const getChannelData = (id: string) => {
-  //   axios
-  //     .get(`${baseUrl}/api/v1/channels/${id}`)
-  //     .then((res) => setChannelData(res.data));
-  // };
+  const getVideoData = (id: string) => {
+    axios
+      .get(`${baseUrl}/api/v1/channels/${id}`)
+      .then((res) => setVideoData(res.data));
+  };
 
-  // useEffect(() => {
-  //   getChannelData(videoResults?.authorId);
-  // }, []);
+  useEffect(() => {
+    if (videoResults) {
+      getVideoData(videoResults?.videoId);
+    }
+  }, []);
+
+  console.log(videoResults);
+
+  if (videoData?.captions) {
+    setTags([...tags, "cc"]);
+  }
 
   return (
     <div>
-      {videoResults.type == "video" ? (
-        <div className="w-64 flex flex-col gap-2" onClick={() => location.href = `/watch?v=${videoResults?.videoId}`}>
+      {videoResults?.type == "video" ? (
+        <div
+          className="w-64 flex flex-col gap-2"
+          onClick={() => (location.href = `/watch?v=${videoResults?.videoId}`)}
+        >
           <img
             src={
               videoResults?.videoThumbnails?.length > 0
-                ? videoResults?.videoThumbnails[0]?.url
+                ? videoResults?.videoThumbnails[1]?.url.replace(":3000", "")
                 : "https://dummyimage.com/1280x720/fff/aaa"
             }
             className="rounded-lg shadow-lg hover:brightness-90 active:brightness-75 transition hover:cursor-pointer"
@@ -64,7 +76,10 @@ const Card = ({ videoResults }: any) => {
               {videoResults?.author}
             </span>
             <span className="font-semibold text-sm text-orange-500">
-              {String(videoResults?.subCount).replace(/(.)(?=(\d{3})+$)/g, "$1,")}{" "}
+              {String(videoResults?.subCount).replace(
+                /(.)(?=(\d{3})+$)/g,
+                "$1,"
+              )}{" "}
               Subscribers
             </span>
             <span className="font-semibold text-sm text-orange-900">

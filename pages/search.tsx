@@ -7,22 +7,28 @@ import Card from "../components/Card";
 
 const Search = () => {
   const { query } = useRouter();
-  const baseUrl = "https://inv.vern.cc/api/v1";
+  const baseUrl = "https://inv.riverside.rocks/api/v1";
   const [searchRes, setSearchRes] = useState<any>();
 
   const getSearch = (q: string) => {
-    if (typeof q !== "undefined" && q.length > 0)
-      axios
-        .get(`${baseUrl}/search?q=${q}`)
-        .then((res) => setSearchRes(res.data));
+    try {
+      if (typeof q !== "undefined" && q.length > 0) {
+        axios
+          .get(`${baseUrl}/search?q=${q}`)
+          .then((res) => setSearchRes(res.data));
+      }
+    } catch (error) {
+        console.log("Error")
+    }
   };
 
   useEffect(() => {
-    getSearch(query.q as string);
-  }, [query]);
+    if (query.q) {
+      getSearch(query.q as string);
+    }
+  }, [query.q]);
 
-  console.log(query.q);
-  console.log(searchRes);
+  console.log(searchRes)
 
   return (
     <div className="font-['Inter']">
