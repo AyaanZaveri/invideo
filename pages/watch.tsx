@@ -8,29 +8,27 @@ import videojs from "video.js";
 const Watch = () => {
   const { query } = useRouter();
   const [watchData, setWatchData] = useState<any>();
-  const baseUrl = "https://pa.il.ax";
+  const baseUrl = "https://inv.riverside.rocks/api/v1";
 
   const getWatchData = () => {
-    axios
-      .get(`${baseUrl}/streams/${query.v}`)
-      .then((res) => setWatchData(res.data));
+    if (query.v) {
+      axios
+        .get(`${baseUrl}/videos/${query.v}`)
+        .then((res) => setWatchData(res.data));
+    }
   };
 
   useEffect(() => {
     getWatchData();
   }, [query.v]);
 
-  console.log(watchData?.hls);
-
   return (
     <div>
-      {watchData?.hls ? (
+      {watchData?.dashUrl.length > 0 && watchData?.dashUrl !== undefined ? (
         <VideoPlayer
           width={1280}
           height={720}
-          source={
-            "https://inv.riverside.rocks/api/manifest/dash/id/N8M8OOe3SV4?local=true"
-          }
+          source={watchData?.dashUrl.replace("http://", "https://") + "?local=true"}
         />
       ) : null}
     </div>
