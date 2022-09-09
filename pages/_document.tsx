@@ -30,7 +30,7 @@ export default class MyDoc extends Document {
           href="https://cdn.jsdelivr.net/npm/plyr@3.7.2/dist/plyr.css"
         />
         <script src="https://cdn.jsdelivr.net/npm/plyr@3.7.2/dist/plyr.min.js"></script>
-        <script src="https://cdn.dashjs.org/latest/dash.all.min.js"></script>
+
         <body className="box-border">
           <Main />
           <NextScript />

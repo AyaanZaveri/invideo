@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, useEffect } from "react";
 import "video.js/dist/video-js.css";
 import "@videojs/themes/dist/city/index.css";
 
@@ -33,13 +33,16 @@ const VideoPlayer = ({
   baseUrl,
 }: Props) => {
   const startVideo = (video: any) => {
-    var player = videojs(video, { autoplay: true });
-    // @ts-ignore
-    player.httpSourceSelector();
-    // @ts-ignore
-    player.vttThumbnails({
-      src: storyboard,
-    });
+    if (video) {
+      var player = videojs(video, { autoplay: true });
+      if (player) {
+        // @ts-ignore
+        player.httpSourceSelector();
+        if (typeof player.vttThumbnails.src === "function") {
+          player.vttThumbnails.src(storyboard);
+        }
+      }
+    }
   };
 
   return (
@@ -49,7 +52,7 @@ const VideoPlayer = ({
         width={width}
         height={height}
         controls
-        className="video-js vjs-default-skin"
+        className="video-js vjs-default-skin rounded-lg overflow-hidden shadow-lg"
         poster={poster}
       >
         <source src={source} type="application/dash+xml" />
