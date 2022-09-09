@@ -13,7 +13,15 @@ if (typeof window !== "undefined") {
   window.videojs = videojs as any;
 }
 
-const VideoPlayer = ({ width, height, source, captions, storyboard }) => {
+interface Props {
+  width: number
+  height: number
+  source: string
+  captions: any
+  storyboard: string
+}
+
+const VideoPlayer = ({ width, height, source, captions, storyboard } : Props) => {
   const startVideo = (video: any) => {
     var player = videojs(video);
 
