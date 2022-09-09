@@ -29,7 +29,7 @@ const Watch = () => {
           width={1280}
           height={720}
           source={
-            "https://inv.riverside.rocks/api/manifest/dash/id/JAEfMGz1QBA?local=true"
+            "https://inv.riverside.rocks/api/manifest/dash/id/N8M8OOe3SV4?local=true"
           }
         />
       ) : null}

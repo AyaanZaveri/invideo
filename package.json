@@ -6,6 +6,7 @@
     "start": "next start"
   },
   "dependencies": {
+    "@videojs/themes": "^1.0.1",
     "@vidstack/player": "^1.6.3",
     "@vidstack/player-react": "^1.6.3",
     "@vime/core": "^4.3.3",
@@ -32,6 +33,7 @@
     "videojs-contrib-quality-levels": "^2.1.0",
     "videojs-hls-quality-selector": "^1.1.4",
     "videojs-http-source-selector": "^1.1.6",
+    "videojs-vtt-thumbnails": "^0.0.13",
     "xml-js": "^1.6.11",
     "yt-dash-manifest-generator": "^2.0.0"
   },
