@@ -3,7 +3,6 @@ import React, { useEffect, useState } from "react";
 
 const Card = ({ videoResults }: any) => {
   const [videoData, setVideoData] = useState<any>();
-  const [tags, setTags] = useState([]);
 
   const baseUrl = "https://inv.riverside.rocks/api/v1/";
 
@@ -20,10 +19,6 @@ const Card = ({ videoResults }: any) => {
   }, []);
 
   console.log(videoResults);
-
-  if (videoData?.captions) {
-    setTags([...tags, "cc"]);
-  }
 
   return (
     <div>
