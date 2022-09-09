@@ -19,6 +19,8 @@ interface Props {
   source: string;
   captions: any;
   storyboard: string;
+  poster: string;
+  baseUrl: string;
 }
 
 const VideoPlayer = ({
@@ -27,9 +29,11 @@ const VideoPlayer = ({
   source,
   captions,
   storyboard,
+  poster,
+  baseUrl,
 }: Props) => {
   const startVideo = (video: any) => {
-    var player = videojs(video);
+    var player = videojs(video, { autoplay: true });
     // @ts-ignore
     player.httpSourceSelector();
     // @ts-ignore
@@ -46,11 +50,12 @@ const VideoPlayer = ({
         height={height}
         controls
         className="video-js vjs-default-skin"
+        poster={poster}
       >
         <source src={source} type="application/dash+xml" />
         {captions.map((caption: any) => (
           <track
-            src={caption?.url}
+            src={baseUrl + caption?.url}
             kind="subtitles"
             srcLang={caption?.language_code}
             label={caption?.label}

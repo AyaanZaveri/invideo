@@ -36,6 +36,8 @@ const Watch = () => {
             baseUrl +
             watchData?.storyboards[watchData?.storyboards.length - 1]?.url
           }
+          poster={watchData?.videoThumbnails[0]?.url}
+          baseUrl={baseUrl}
         />
       ) : null}
     </div>
