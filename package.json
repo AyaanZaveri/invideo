@@ -7,10 +7,6 @@
   },
   "dependencies": {
     "@videojs/themes": "^1.0.1",
-    "@vidstack/player": "^1.6.3",
-    "@vidstack/player-react": "^1.6.3",
-    "@vime/core": "^4.3.3",
-    "@vime/react": "^4.3.3",
     "axios": "^0.27.2",
     "change-case": "^4.1.2",
     "dash.js": "^4.0.0",
