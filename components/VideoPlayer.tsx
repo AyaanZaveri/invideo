@@ -13,37 +13,37 @@ if (typeof window !== "undefined") {
   window.videojs = videojs as any;
 }
 
-class VideoPlayer extends Component {
-  startVideo(video: any) {
+const VideoPlayer = ({ width, height, source, captions, storyboard }) => {
+  const startVideo = (video: any) => {
     var player = videojs(video);
 
     player.httpSourceSelector();
     player.vttThumbnails({
-      src: "https://inv.riverside.rocks/api/v1/storyboards/N8M8OOe3SV4?width=179&height=90",
+      src: storyboard,
     });
-  }
+  };
 
-  render() {
-    return (
-      <div className="flex justify-center items-center h-screen">
-        <video
-          ref={this.startVideo}
-          width={this.props.width}
-          height={this.props.height}
-          controls
-          className="video-js vjs-default-skin"
-        >
-          <source src={this.props.source} type="application/dash+xml" />
+  return (
+    <div className="flex justify-center items-center h-screen">
+      <video
+        ref={startVideo}
+        width={width}
+        height={height}
+        controls
+        className="video-js vjs-default-skin"
+      >
+        <source src={source} type="application/dash+xml" />
+        {captions.map((caption) => (
           <track
-            src="https://inv.riverside.rocks/api/v1/captions/N8M8OOe3SV4?label=English+%28auto-generated%29"
+            src={caption?.url}
             kind="subtitles"
-            srclang="en"
-            label="English"
+            srclang={caption?.language_code}
+            label={caption?.label}
           />
-        </video>
-      </div>
-    );
-  }
-}
+        ))}
+      </video>
+    </div>
+  );
+};
 
 export default VideoPlayer;

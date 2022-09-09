@@ -8,12 +8,12 @@ import videojs from "video.js";
 const Watch = () => {
   const { query } = useRouter();
   const [watchData, setWatchData] = useState<any>();
-  const baseUrl = "https://inv.riverside.rocks/api/v1";
+  const baseUrl = "https://inv.riverside.rocks";
 
   const getWatchData = () => {
     if (query.v) {
       axios
-        .get(`${baseUrl}/videos/${query.v}`)
+        .get(`${baseUrl}/api/v1/videos/${query.v}`)
         .then((res) => setWatchData(res.data));
     }
   };
@@ -28,7 +28,14 @@ const Watch = () => {
         <VideoPlayer
           width={1280}
           height={720}
-          source={watchData?.dashUrl.replace("http://", "https://") + "?local=true"}
+          source={
+            watchData?.dashUrl.replace("http://", "https://") + "?local=true"
+          }
+          captions={watchData?.captions}
+          storyboard={
+            baseUrl +
+            watchData?.storyboards[watchData?.storyboards.length - 1]?.url
+          }
         />
       ) : null}
     </div>
