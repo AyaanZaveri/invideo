@@ -14,18 +14,25 @@ if (typeof window !== "undefined") {
 }
 
 interface Props {
-  width: number
-  height: number
-  source: string
-  captions: any
-  storyboard: string
+  width: number;
+  height: number;
+  source: string;
+  captions: any;
+  storyboard: string;
 }
 
-const VideoPlayer = ({ width, height, source, captions, storyboard } : Props) => {
+const VideoPlayer = ({
+  width,
+  height,
+  source,
+  captions,
+  storyboard,
+}: Props) => {
   const startVideo = (video: any) => {
     var player = videojs(video);
-
+    // @ts-ignore
     player.httpSourceSelector();
+    // @ts-ignore
     player.vttThumbnails({
       src: storyboard,
     });
@@ -41,11 +48,11 @@ const VideoPlayer = ({ width, height, source, captions, storyboard } : Props) =>
         className="video-js vjs-default-skin"
       >
         <source src={source} type="application/dash+xml" />
-        {captions.map((caption) => (
+        {captions.map((caption: any) => (
           <track
             src={caption?.url}
             kind="subtitles"
-            srclang={caption?.language_code}
+            srcLang={caption?.language_code}
             label={caption?.label}
           />
         ))}
