@@ -26,7 +26,7 @@ const Search = () => {
   console.log(searchSuggestions);
 
   return (
-    <div>
+    <div className="">
       <div className="flex items-center justify-center flex-col">
         <div className="bg-white/75 backdrop-blur-md w-full h-16 flex items-center justify-center flex-col">
           <div className="relative rounded-md shadow-sm w-6/12">

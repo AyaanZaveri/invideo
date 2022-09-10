@@ -4,6 +4,8 @@ import React, { useEffect, useState } from "react";
 import dynamic from "next/dynamic";
 import VideoPlayer from "../components/VideoPlayer";
 import videojs from "video.js";
+import NavbarIndex from "../components/Navbar";
+import Sidebar from "../components/Sidebar";
 
 const Watch = () => {
   const { query } = useRouter();
@@ -24,22 +26,29 @@ const Watch = () => {
 
   return (
     <div>
-      {watchData?.dashUrl.length > 0 && watchData?.dashUrl !== undefined ? (
-        <VideoPlayer
-          width={1280}
-          height={720}
-          source={
-            watchData?.dashUrl.replace("http://", "https://") + "?local=true"
-          }
-          captions={watchData?.captions}
-          storyboard={
-            baseUrl +
-            watchData?.storyboards[watchData?.storyboards.length - 1]?.url
-          }
-          poster={watchData?.videoThumbnails[0]?.url}
-          baseUrl={baseUrl}
-        />
-      ) : null}
+      <NavbarIndex />
+      <Sidebar />
+      <div className="pl-52 pt-16 bg-stone-50 h-screen">
+        <div className="p-8">
+          {watchData?.dashUrl.length > 0 && watchData?.dashUrl !== undefined ? (
+            <VideoPlayer
+              width={1280}
+              height={720}
+              source={
+                watchData?.dashUrl.replace("http://", "https://") +
+                "?local=true"
+              }
+              captions={watchData?.captions}
+              storyboard={
+                baseUrl +
+                watchData?.storyboards[watchData?.storyboards.length - 1]?.url
+              }
+              poster={watchData?.videoThumbnails[0]?.url}
+              baseUrl={baseUrl}
+            />
+          ) : null}
+        </div>
+      </div>
     </div>
   );
 };
