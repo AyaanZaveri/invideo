@@ -33,17 +33,22 @@ const VideoPlayer = ({
   baseUrl,
 }: Props) => {
   const startVideo = (video: any) => {
-    var player = videojs(video, { autoplay: true });
+    var player = video ? videojs(video, { autoplay: true }) : "";
     // @ts-ignore
-    player.httpSourceSelector();
+    if (typeof player.httpSourceSelector === "function") {
+      player.httpSourceSelector();
+    }
     // @ts-ignore
-    player.vttThumbnails({
-      src: storyboard,
-    });
+    if (typeof player.vttThumbnails === "function") {
+      player.vttThumbnails({
+        src: storyboard,
+      });
+    }
   };
+  
 
   return (
-    <div className="flex justify-center items-center h-screen">
+    <div className="">
       <video
         ref={startVideo}
         width={width}
