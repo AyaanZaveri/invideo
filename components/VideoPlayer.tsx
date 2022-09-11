@@ -11,6 +11,7 @@ require("videojs-vtt-thumbnails");
 import "videojs-hotkeys";
 import Plyr from "plyr-react";
 import "plyr-react/plyr.css";
+import { useSnackbar } from "react-simple-snackbar";
 
 if (typeof window !== "undefined") {
   window.videojs = videojs as any;
@@ -35,9 +36,18 @@ const VideoPlayer = ({
   poster,
   baseUrl,
 }: Props) => {
-  const [currentTime, setCurrentTime] = useState();
+  const [sponsors, setSponsors] = useState([
+    {
+      segment: [87.39, 104.9],
+      category: "sponsor",
+    },
+    {
+      segment: [792.335, 858.977],
+      category: "sponsor",
+    },
+  ]);
 
-  const videoRef = useRef(null);
+  const videoRef = useRef<any>(null);
 
   useEffect(() => {
     var player = videoRef
@@ -66,19 +76,18 @@ const VideoPlayer = ({
 
     // @ts-ignore
     if (typeof player.currentTime === "function") {
-      setCurrentTime((ct) => console.log(ct));
+      setInterval(() => {
+        console.log(player.currentTime());
+        sponsors.map((sponsor) => {
+          if (
+            player.currentTime().toFixed(0) == sponsor.segment[0].toFixed(0)
+          ) {
+            player.currentTime(sponsor.segment[1]);
+          }
+        });
+      }, 1000);
     }
   }, []);
-
-  // useEffect(() => {
-  //   setInterval(() => {
-  //     startVideo();
-  //   }, 1000);
-  // });
-
-  useEffect(() => {
-    currentTime ? currentTime(3) : null;
-  });
 
   return (
     <div className="w-9/12">
@@ -98,7 +107,6 @@ const VideoPlayer = ({
           />
         ))}
       </video>
-      {currentTime}
     </div>
   );
 };

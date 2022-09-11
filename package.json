@@ -20,6 +20,7 @@
     "react": "18.1.0",
     "react-dom": "18.1.0",
     "react-icons": "^4.4.0",
+    "react-simple-snackbar": "^1.1.11",
     "shaka-player-react": "^1.1.5",
     "title-case": "^3.0.3",
     "video.js": "^7.9.7",
