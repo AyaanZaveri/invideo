@@ -4576,6 +4576,11 @@
     "video.js" "^7.5.5"
     "videojs-contrib-quality-levels" "^2.0.9"
 
+"videojs-hotkeys@^0.2.28":
+  "integrity" "sha512-M8rlD5OSB3EDRdbS4MRNlGKFpA2sSIStmUPvy5zfl/NigzWaN6r4wnb32rEN0v97GiQwmUfXSmqrPNrXhiFQmQ=="
+  "resolved" "https://registry.npmjs.org/videojs-hotkeys/-/videojs-hotkeys-0.2.28.tgz"
+  "version" "0.2.28"
+
 "videojs-http-source-selector@^1.1.6":
   "integrity" "sha512-6b5MmKTT2cVnrjtdNj4z1VO91udbXkZkTYA6LlD8WN2aHlG2rqFTmtMab4NK4nlkkkbRnm3c2q2IddL3jffLmg=="
   "resolved" "https://registry.npmjs.org/videojs-http-source-selector/-/videojs-http-source-selector-1.1.6.tgz"

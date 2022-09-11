@@ -1,0 +1,16 @@
+.vjs-control-bar {
+  backdrop-filter: blur(8px);
+  background-color: rgba(154, 52, 18, 0.5) !important;
+}
+
+.vjs-vtt-thumbnail-display {
+  border-radius: 10px;
+  box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1) !important;
+}
+
+.vjs-big-play-button {
+  background-color: rgba(154, 52, 18, 0.5) !important;
+  backdrop-filter: blur(8px);
+  border: none !important;
+  box-shadow: none !important;
+}

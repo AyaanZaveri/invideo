@@ -28,7 +28,7 @@ const Watch = () => {
     <div>
       <NavbarIndex />
       <Sidebar />
-      <div className="pl-52 pt-16 bg-stone-50 h-screen">
+      <div className="pl-52 pt-16 bg-stone-50 h-full">
         <div className="p-8">
           {watchData?.dashUrl.length > 0 && watchData?.dashUrl !== undefined ? (
             <VideoPlayer
