@@ -35,7 +35,7 @@ const VideoPlayer = ({
   poster,
   baseUrl,
 }: Props) => {
-  const [currentTime, setCurrentTime] = useState(0);
+  const [currentTime, setCurrentTime] = useState();
 
   const videoRef = useRef(null);
 
@@ -66,10 +66,7 @@ const VideoPlayer = ({
 
     // @ts-ignore
     if (typeof player.currentTime === "function") {
-      setInterval(() => {
-        var ct = player.currentTime();
-        setCurrentTime(ct);
-      }, 1000);
+      setCurrentTime((ct) => player.currentTime(ct));
     }
   }, []);
 
@@ -78,6 +75,10 @@ const VideoPlayer = ({
   //     startVideo();
   //   }, 1000);
   // });
+
+  useEffect(() => {
+    currentTime ? currentTime(3) : null;
+  }, [currentTime]);
 
   return (
     <div className="w-9/12">

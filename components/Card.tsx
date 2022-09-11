@@ -1,4 +1,5 @@
 import axios from "axios";
+import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
 
 const Card = ({ videoResults }: any) => {
@@ -20,12 +21,14 @@ const Card = ({ videoResults }: any) => {
 
   console.log(videoResults);
 
+  const router = useRouter()
+
   return (
     <div>
       {videoResults?.type == "video" ? (
         <div
           className="w-64 flex flex-col gap-2"
-          onClick={() => (location.href = `/watch?v=${videoResults?.videoId}`)}
+          onClick={() => router.push(`/watch?v=${videoResults?.videoId}`)}
         >
           <img
             src={
