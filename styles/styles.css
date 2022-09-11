@@ -1,3 +1,7 @@
+*:focus {
+  outline: none;
+}
+
 .vjs-control-bar {
   backdrop-filter: blur(8px);
   background-color: rgba(154, 52, 18, 0.5) !important;

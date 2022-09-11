@@ -66,7 +66,7 @@ const VideoPlayer = ({
 
     // @ts-ignore
     if (typeof player.currentTime === "function") {
-      setCurrentTime((ct) => player.currentTime(ct));
+      setCurrentTime((ct) => console.log(ct));
     }
   }, []);
 
@@ -78,7 +78,7 @@ const VideoPlayer = ({
 
   useEffect(() => {
     currentTime ? currentTime(3) : null;
-  }, [currentTime]);
+  });
 
   return (
     <div className="w-9/12">
