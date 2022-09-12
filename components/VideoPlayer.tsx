@@ -56,26 +56,28 @@ const VideoPlayer = ({
         })
       : "";
     // @ts-ignore
-    if (typeof player.httpSourceSelector === "function") {
+    if (typeof player.httpSourceSelector === "function" && player) {
+      // @ts-ignore
       player.httpSourceSelector();
     }
 
     // @ts-ignore
-    if (typeof player.vttThumbnails === "function") {
+    if (typeof player.vttThumbnails === "function" && player) {
+      // @ts-ignore
       player.vttThumbnails({
         src: storyboard,
       });
     }
 
     // @ts-ignore
-    if (typeof player.currentTime === "function") {
+    if (typeof player.currentTime === "function" && player) {
       setInterval(() => {
         sponsors.map((sponsor: any) => {
           if (
             player.currentTime().toFixed(0) == sponsor.segment[0].toFixed(0)
-            ) {
-              player.currentTime(sponsor.segment[1]);
-            }
+          ) {
+            player.currentTime(sponsor.segment[1]);
+          }
         });
       }, 1000);
     }
