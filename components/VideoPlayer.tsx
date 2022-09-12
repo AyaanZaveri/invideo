@@ -5,14 +5,13 @@ import "@videojs/themes/dist/forest/index.css";
 import videojs from "video.js";
 import "video.js/dist/video-js.css";
 import "videojs-vtt-thumbnails/dist/videojs-vtt-thumbnails.css";
+import dashjs from "dashjs";
+// require("videojs-contrib-dash");
 require("videojs-contrib-quality-levels");
 require("videojs-http-source-selector");
 require("videojs-vtt-thumbnails");
 require("videojs-overlay");
 import "videojs-hotkeys";
-import Plyr from "plyr-react";
-import "plyr-react/plyr.css";
-import axios from "axios";
 
 if (typeof window !== "undefined") {
   window.videojs = videojs as any;
@@ -99,6 +98,11 @@ const VideoPlayer = ({
         });
       }, 100);
     }
+
+    player.src({
+      src: source,
+      type: "application/dash+xml",
+    });
   }, []);
 
   return (
@@ -109,7 +113,7 @@ const VideoPlayer = ({
         className="video-js vjs-default-skin h-screen w-full vjs-fluid vjs-big-play-centered rounded-lg shadow-lg overflow-hidden"
         poster={poster}
       >
-        <source src={source} type="application/dash+xml" />
+        {/* <source src={source} type="application/dash+xml" /> */}
         {captions.map((caption: any) => (
           <track
             src={baseUrl + caption?.url}

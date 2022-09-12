@@ -23,7 +23,7 @@
     "react-simple-snackbar": "^1.1.11",
     "shaka-player-react": "^1.1.5",
     "title-case": "^3.0.3",
-    "video.js": "^7.9.7",
+    "video.js": "^7.12.1",
     "videojs": "^1.0.0",
     "videojs-contrib-dash": "^4.0.0",
     "videojs-contrib-hls": "^5.15.0",
