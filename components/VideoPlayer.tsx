@@ -73,10 +73,12 @@ const VideoPlayer = ({
     if (typeof player.currentTime === "function" && player) {
       setInterval(() => {
         sponsors.map((sponsor: any) => {
-          if (
-            player?.currentTime().toFixed(0) == sponsor.segment[0].toFixed(0)
-          ) {
-            player?.currentTime(sponsor.segment[1]);
+          if (player) {
+            if (
+              player?.currentTime().toFixed(0) == sponsor.segment[0].toFixed(0)
+            ) {
+              player?.currentTime(sponsor.segment[1]);
+            }
           }
         });
       }, 1000);
