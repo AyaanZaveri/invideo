@@ -32,6 +32,8 @@
     "videojs-hls-quality-selector": "^1.1.4",
     "videojs-hotkeys": "^0.2.28",
     "videojs-http-source-selector": "^1.1.6",
+    "videojs-markers": "^1.0.1",
+    "videojs-overlay": "^2.1.5",
     "videojs-vtt-thumbnails": "^0.0.13",
     "xml-js": "^1.6.11",
     "yt-dash-manifest-generator": "^2.0.0"

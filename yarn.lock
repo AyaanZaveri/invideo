@@ -4508,7 +4508,7 @@
     "videojs-vtt.js" "0.12.6"
     "xhr" "2.4.0"
 
-"video.js@^5.18.0 || ^6 || ^7", "video.js@^5.19.2 || ^6.6.0 || ^7.2.0", "video.js@^6 || ^7", "video.js@^7.0.0", "video.js@^7.5.5", "video.js@^7.9.7":
+"video.js@^5.18.0 || ^6 || ^7", "video.js@^5.19.2 || ^6.6.0 || ^7.2.0", "video.js@^6 || ^7", "video.js@^7.0.0", "video.js@^7.5.5", "video.js@^7.9.7", "video.js@>=4":
   "integrity" "sha512-hdvAHKAyaL6bCDkeu0pPtFYKi1EDaOUovm7FN1xqBDolUxgH8FKy1WIgTS+Ouuaw7R54SCTcSeXjZEizhy9ouQ=="
   "resolved" "https://registry.npmjs.org/video.js/-/video.js-7.20.2.tgz"
   "version" "7.20.2"
@@ -4630,6 +4630,19 @@
   "version" "1.1.2"
   dependencies:
     "es5-shim" "^4.5.1"
+
+"videojs-markers@^1.0.1":
+  "integrity" "sha512-jw3jRhanwno0YgdRR9+z6cbdmMs/jeXcrgkMr6mlEP+XfZN+isWNYp0GnPvdXrBcnb6AANdDHlnXSmIvecEzWA=="
+  "resolved" "https://registry.npmjs.org/videojs-markers/-/videojs-markers-1.0.1.tgz"
+  "version" "1.0.1"
+
+"videojs-overlay@^2.1.5":
+  "integrity" "sha512-BPpW8ayC/3fX+JOegxvzU9MDS1MBuF3l6DWy5DXTmhjvDen8j5p/q46UGyCkUb2H9ljnwetTIkIPMza0iP41Bw=="
+  "resolved" "https://registry.npmjs.org/videojs-overlay/-/videojs-overlay-2.1.5.tgz"
+  "version" "2.1.5"
+  dependencies:
+    "global" "^4.3.2"
+    "video.js" "^6 || ^7"
 
 "videojs-vtt-thumbnails@^0.0.13":
   "integrity" "sha512-7VGcpTRF+ppIss/NiZcDkVOE02k/GoMltxUumQ2jaTpR1ZieYTM+dPopmTXubLxOgUP3F71uTLMZVnWEtiHjVA=="

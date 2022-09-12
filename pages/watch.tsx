@@ -16,7 +16,9 @@ const Watch = () => {
 
   const getSponsors = () => {
     axios
-      .get(`https://sponsor.ajay.app/api/skipSegments?videoID=${query.v}`)
+      .get(
+        `https://sponsor.ajay.app/api/skipSegments?videoID=${query.v}&categories=[%22sponsor%22,%22selfpromo%22,%22interaction%22,%22intro%22,%22outro%22,%22preview%22]`
+      )
       .then((res) =>
         res.data.map((sponsor: any) =>
           setSponsors((prevSponsors: any) => [

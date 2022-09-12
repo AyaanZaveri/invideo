@@ -8,6 +8,7 @@ import "videojs-vtt-thumbnails/dist/videojs-vtt-thumbnails.css";
 require("videojs-contrib-quality-levels");
 require("videojs-http-source-selector");
 require("videojs-vtt-thumbnails");
+require("videojs-overlay");
 import "videojs-hotkeys";
 import Plyr from "plyr-react";
 import "plyr-react/plyr.css";
@@ -78,10 +79,25 @@ const VideoPlayer = ({
               player?.currentTime().toFixed(0) == sponsor.segment[0].toFixed(0)
             ) {
               player?.currentTime(sponsor.segment[1]);
+
+              // @ts-ignore
+              if (typeof player.overlay === "function" && player) {
+                player.overlay({
+                  overlays: [
+                    {
+                      content: `A ${sponsor.category} has been skipped.`,
+                      start: sponsor.segment[1],
+                      end: sponsor.segment[1] + 3,
+                      class:
+                        "p-5 text-lg font-semibold text-gray-300 opacity-80 py-3 backdrop-blur inline-flex justify-end w-full items-end transition ease-in-out duration-500",
+                    },
+                  ],
+                });
+              }
             }
           }
         });
-      }, 1000);
+      }, 100);
     }
   }, []);
 
