@@ -12,6 +12,23 @@ const Watch = () => {
   const [watchData, setWatchData] = useState<any>();
   const baseUrl = "https://inv.riverside.rocks";
 
+  const [sponsors, setSponsors] = useState<any>([]);
+
+  const getSponsors = () => {
+    axios
+      .get(`https://sponsor.ajay.app/api/skipSegments?videoID=${query.v}`)
+      .then((res) =>
+        res.data.map((sponsor: any) =>
+          setSponsors((prevSponsors: any) => [
+            ...prevSponsors,
+            { segment: sponsor.segment, category: sponsor.category },
+          ])
+        )
+      );
+  };
+
+  console.log(sponsors);
+
   const getWatchData = () => {
     if (query.v) {
       axios
@@ -22,6 +39,7 @@ const Watch = () => {
 
   useEffect(() => {
     getWatchData();
+    getSponsors();
   }, [query.v]);
 
   return (
@@ -45,6 +63,7 @@ const Watch = () => {
               }
               poster={watchData?.videoThumbnails[0]?.url}
               baseUrl={baseUrl}
+              sponsors={sponsors}
             />
           ) : null}
         </div>

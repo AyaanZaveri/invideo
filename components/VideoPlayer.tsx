@@ -11,7 +11,7 @@ require("videojs-vtt-thumbnails");
 import "videojs-hotkeys";
 import Plyr from "plyr-react";
 import "plyr-react/plyr.css";
-import { useSnackbar } from "react-simple-snackbar";
+import axios from "axios";
 
 if (typeof window !== "undefined") {
   window.videojs = videojs as any;
@@ -25,6 +25,7 @@ interface Props {
   storyboard: string;
   poster: string;
   baseUrl: string;
+  sponsors: any;
 }
 
 const VideoPlayer = ({
@@ -35,19 +36,11 @@ const VideoPlayer = ({
   storyboard,
   poster,
   baseUrl,
+  sponsors,
 }: Props) => {
-  const [sponsors, setSponsors] = useState([
-    {
-      segment: [87.39, 104.9],
-      category: "sponsor",
-    },
-    {
-      segment: [792.335, 858.977],
-      category: "sponsor",
-    },
-  ]);
-
   const videoRef = useRef<any>(null);
+
+  console.log(sponsors);
 
   useEffect(() => {
     var player = videoRef
@@ -77,13 +70,12 @@ const VideoPlayer = ({
     // @ts-ignore
     if (typeof player.currentTime === "function") {
       setInterval(() => {
-        console.log(player.currentTime());
-        sponsors.map((sponsor) => {
+        sponsors.map((sponsor: any) => {
           if (
             player.currentTime().toFixed(0) == sponsor.segment[0].toFixed(0)
-          ) {
-            player.currentTime(sponsor.segment[1]);
-          }
+            ) {
+              player.currentTime(sponsor.segment[1]);
+            }
         });
       }, 1000);
     }

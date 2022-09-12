@@ -4582,6 +4582,14 @@
     "global" "^4.3.2"
     "video.js" "^6 || ^7"
 
+"videojs-errors@^6.0.0":
+  "integrity" "sha512-iQqi/utHaAMuRV7vf9Eg90zPbOssS97ckPqPV0ekgHQTuvRmmSzaMcs3pke2fjBRy9pG9PIGFGyLSBlHe/Fyfw=="
+  "resolved" "https://registry.npmjs.org/videojs-errors/-/videojs-errors-6.0.0.tgz"
+  "version" "6.0.0"
+  dependencies:
+    "global" "^4.4.0"
+    "video.js" "^6 || ^7"
+
 "videojs-font@2.1.0":
   "integrity" "sha512-zFqWpLrXf1q8NtYx5qtZhMC6SLUFScDmR6j+UGPogobxR21lvXShhnzcNNMdOxJUuFLiToJ/BPpFUQwX4xhpvA=="
   "resolved" "https://registry.npmjs.org/videojs-font/-/videojs-font-2.1.0.tgz"
