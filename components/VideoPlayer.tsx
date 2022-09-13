@@ -1,6 +1,5 @@
 import React, { Component, useEffect, useRef, useState } from "react";
 import "video.js/dist/video-js.css";
-import "@videojs/themes/dist/forest/index.css";
 
 import videojs from "video.js";
 import "video.js/dist/video-js.css";
