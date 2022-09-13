@@ -1238,6 +1238,14 @@
     "global" "^4.4.0"
     "xmldom" "^0.5.0"
 
+"mux.js@^6.2.0":
+  "integrity" "sha512-SKuxIcbmK/aJoz78aQNuoXY8R/uEPm1gQMqWTXL6DNl7oF8UPjdt/AunXGkPQpBouGWKDgL/TzSl2VV5NuboRg=="
+  "resolved" "https://registry.npmjs.org/mux.js/-/mux.js-6.2.0.tgz"
+  "version" "6.2.0"
+  dependencies:
+    "@babel/runtime" "^7.11.2"
+    "global" "^4.4.0"
+
 "mux.js@4.3.2":
   "integrity" "sha512-g0q6DPdvb3yYcoK7ElBGobdSSrhY/RjPt19U7uUc733aqvc5bCS/aCvL9z+448y+IoCZnYDwyZfQBBXMSmGOaQ=="
   "resolved" "https://registry.npmjs.org/mux.js/-/mux.js-4.3.2.tgz"
