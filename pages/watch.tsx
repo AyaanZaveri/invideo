@@ -6,11 +6,15 @@ import VideoPlayer from "../components/VideoPlayer";
 import videojs from "video.js";
 import NavbarIndex from "../components/Navbar";
 import Sidebar from "../components/Sidebar";
+import { HiCheckCircle } from "react-icons/hi";
 
 const Watch = () => {
   const { query } = useRouter();
   const [watchData, setWatchData] = useState<any>();
+  const [pipedData, setPipedData] = useState<any>();
   const baseUrl = "https://inv.riverside.rocks";
+  // Using Piped to get uploaderVerified
+  const pipedBaseUrl = "https://pa.il.ax";
 
   const [sponsors, setSponsors] = useState<any>([]);
 
@@ -39,10 +43,21 @@ const Watch = () => {
     }
   };
 
+  const getPiped = () => {
+    if (query.v) {
+      axios
+        .get(`${pipedBaseUrl}/streams/${query.v}`)
+        .then((res) => setPipedData(res.data));
+    }
+  };
+
   useEffect(() => {
     getWatchData();
+    getPiped();
     getSponsors();
   }, [query.v]);
+
+  console.log(pipedData)
 
   return (
     <div className="font-['Inter']">
@@ -83,23 +98,26 @@ const Watch = () => {
                   }
                   alt=""
                 />
-                <span className="font-semibold text-orange-800">
+                <span className="font-semibold text-orange-800 inline-flex items-center gap-1">
                   {watchData?.author}
+                  {pipedData?.uploaderVerified ? (
+                    <HiCheckCircle className="h-4 w-4" />
+                  ) : null}
                 </span>
               </div>
             </div>
             <div className="flex flex-col items-end">
               <span className="text-orange-800">
-                Published <b>{watchData?.publishedText}</b>
+                Published · <b>{watchData?.publishedText}</b>
               </span>
               <span className="text-stone-800">
+                Views ·{" "}
                 <b>
                   {String(watchData?.viewCount).replace(
                     /(.)(?=(\d{3})+$)/g,
                     "$1,"
                   )}{" "}
                 </b>
-                Views
               </span>
             </div>
           </div>

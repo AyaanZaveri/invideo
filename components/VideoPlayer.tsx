@@ -45,66 +45,69 @@ const VideoPlayer = ({
   useEffect(() => {
     var player = videoRef
       ? videojs(videoRef?.current, { autoplay: false })
-      : "";
+      : null;
 
-    // @ts-ignore
-    if (typeof player.httpSourceSelector === "function" && player) {
+    if (player) {
       // @ts-ignore
-      player.httpSourceSelector();
-    }
+      if (typeof player.httpSourceSelector === "function" && player) {
+        // @ts-ignore
+        player.httpSourceSelector();
+      }
 
-    // @ts-ignore
-    if (typeof player.hotkeys === "function" && player) {
       // @ts-ignore
-      player.hotkeys({
-        volumeStep: 0.1,
-        seekStep: 5,
-        enableModifiersForNumbers: false,
-      });
-    }
+      if (typeof player.hotkeys === "function" && player) {
+        // @ts-ignore
+        player.hotkeys({
+          volumeStep: 0.1,
+          seekStep: 5,
+          enableModifiersForNumbers: false,
+        });
+      }
 
-    // @ts-ignore
-    if (typeof player.vttThumbnails === "function" && player) {
       // @ts-ignore
-      player.vttThumbnails({
-        src: storyboard,
-      });
-    }
+      if (typeof player.vttThumbnails === "function" && player) {
+        // @ts-ignore
+        player.vttThumbnails({
+          src: storyboard,
+        });
+      }
 
-    // @ts-ignore
-    if (typeof player.currentTime === "function" && player) {
-      setInterval(() => {
-        sponsors.map((sponsor: any) => {
-          if (player) {
-            if (
-              player?.currentTime().toFixed(0) == sponsor.segment[0].toFixed(0)
-            ) {
-              player?.currentTime(sponsor.segment[1]);
+      // @ts-ignore
+      if (typeof player.currentTime === "function" && player) {
+        setInterval(() => {
+          sponsors.map((sponsor: any) => {
+            if (player) {
+              if (
+                player?.currentTime().toFixed(0) ==
+                sponsor.segment[0].toFixed(0)
+              ) {
+                player?.currentTime(sponsor.segment[1]);
 
-              // @ts-ignore
-              if (typeof player.overlay === "function" && player) {
-                player.overlay({
-                  overlays: [
-                    {
-                      content: `A ${sponsor.category} has been skipped.`,
-                      start: sponsor.segment[1],
-                      end: sponsor.segment[1] + 3,
-                      class:
-                        "p-5 text-lg font-semibold text-gray-300 opacity-80 py-3 backdrop-blur inline-flex justify-end w-full items-end transition ease-in-out duration-500",
-                    },
-                  ],
-                });
+                // @ts-ignore
+                if (typeof player.overlay === "function" && player) {
+                  player.overlay({
+                    overlays: [
+                      {
+                        content: `A ${sponsor.category} has been skipped.`,
+                        start: sponsor.segment[1],
+                        end: sponsor.segment[1] + 3,
+                        class:
+                          "p-5 text-lg font-semibold text-gray-300 opacity-80 py-3 backdrop-blur inline-flex justify-end w-full items-end transition ease-in-out duration-500",
+                      },
+                    ],
+                  });
+                }
               }
             }
-          }
-        });
-      }, 100);
-    }
+          });
+        }, 100);
+      }
 
-    player.src({
-      src: source,
-      type: "application/dash+xml",
-    });
+      player.src({
+        src: source,
+        type: "application/dash+xml",
+      });
+    }
   }, []);
 
   return (
@@ -112,7 +115,7 @@ const VideoPlayer = ({
       <video
         ref={videoRef}
         controls
-        className="video-js vjs-default-skin w-full vjs-fluid vjs-big-play-centered rounded-lg shadow-lg overflow-hidden"
+        className="video-js vjs-default-skin w-full vjs-fluid vjs-big-play-centered rounded-lg overflow-hidden"
         poster={poster}
       >
         {/* <source src={source} type="application/dash+xml" /> */}
