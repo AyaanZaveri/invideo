@@ -44,21 +44,23 @@ const VideoPlayer = ({
 
   useEffect(() => {
     var player = videoRef
-      ? videojs(videoRef?.current, {
-          autoplay: false,
-          plugins: {
-            hotkeys: {
-              volumeStep: 0.1,
-              seekStep: 5,
-              enableModifiersForNumbers: false,
-            },
-          },
-        })
+      ? videojs(videoRef?.current, { autoplay: false })
       : "";
+
     // @ts-ignore
     if (typeof player.httpSourceSelector === "function" && player) {
       // @ts-ignore
       player.httpSourceSelector();
+    }
+
+    // @ts-ignore
+    if (typeof player.hotkeys === "function" && player) {
+      // @ts-ignore
+      player.hotkeys({
+        volumeStep: 0.1,
+        seekStep: 5,
+        enableModifiersForNumbers: false,
+      });
     }
 
     // @ts-ignore
@@ -106,11 +108,11 @@ const VideoPlayer = ({
   }, []);
 
   return (
-    <div className="w-9/12">
+    <div className="w-3/4">
       <video
         ref={videoRef}
         controls
-        className="video-js vjs-default-skin h-screen w-full vjs-fluid vjs-big-play-centered rounded-lg shadow-lg overflow-hidden"
+        className="video-js vjs-default-skin w-full vjs-fluid vjs-big-play-centered rounded-lg shadow-lg overflow-hidden"
         poster={poster}
       >
         {/* <source src={source} type="application/dash+xml" /> */}

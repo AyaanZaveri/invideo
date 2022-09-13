@@ -45,11 +45,11 @@ const Watch = () => {
   }, [query.v]);
 
   return (
-    <div>
+    <div className="font-['Inter']">
       <NavbarIndex />
       <Sidebar />
-      <div className="pl-52 pt-16 bg-stone-50 h-full">
-        <div className="p-8">
+      <div className="pl-52 pt-16 bg-stone-50 h-screen">
+        <div className="p-8 flex flex-col gap-5">
           {watchData?.dashUrl.length > 0 && watchData?.dashUrl !== undefined ? (
             <VideoPlayer
               width={1280}
@@ -68,6 +68,41 @@ const Watch = () => {
               sponsors={sponsors}
             />
           ) : null}
+          <div className="flex flex-row justify-between w-3/4">
+            <div className="flex flex-col gap-1.5">
+              <span className="text-2xl font-bold text-stone-800">
+                {watchData?.title}
+              </span>
+              <div className="inline-flex gap-2 items-center">
+                <img
+                  className="w-8 h-8 rounded-full"
+                  src={
+                    watchData?.authorThumbnails[
+                      watchData?.authorThumbnails.length - 1
+                    ]?.url
+                  }
+                  alt=""
+                />
+                <span className="font-semibold text-orange-800">
+                  {watchData?.author}
+                </span>
+              </div>
+            </div>
+            <div className="flex flex-col items-end">
+              <span className="text-orange-800">
+                Published <b>{watchData?.publishedText}</b>
+              </span>
+              <span className="text-stone-800">
+                <b>
+                  {String(watchData?.viewCount).replace(
+                    /(.)(?=(\d{3})+$)/g,
+                    "$1,"
+                  )}{" "}
+                </b>
+                Views
+              </span>
+            </div>
+          </div>
         </div>
       </div>
     </div>

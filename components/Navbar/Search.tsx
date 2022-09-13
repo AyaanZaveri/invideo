@@ -8,6 +8,7 @@ const Search = () => {
 
   const [search, setSearch] = useState<string>("");
   const [searchSuggestions, setSearchSuggestions] = useState<any>([]);
+  const [showSuggestions, setShowSuggestions] = useState<any>(false);
 
   const getSearchSuggestions = (query: string) => {
     axios
@@ -19,11 +20,15 @@ const Search = () => {
 
   const handleSearch = (e: any) => {
     e.preventDefault();
+    setShowSuggestions(false);
     router.push(`/search?q=${search}`);
   };
 
   useEffect(() => {
-    getSearchSuggestions(search);
+    if (search) {
+      setShowSuggestions(true);
+      getSearchSuggestions(search);
+    }
   }, [search]);
 
   console.log(searchSuggestions);
@@ -47,10 +52,15 @@ const Search = () => {
           </div>
         </div>
         <div className="w-6/12">
-          {searchSuggestions?.length > 0 ? (
+          {searchSuggestions?.length > 0 && showSuggestions ? (
             <div className="flex flex-col w-full py-2 gap-1 rounded-lg border border-stone-300/50 select-none bg-white/75 shadow-sm shadow-stone-100 backdrop-blur-lg overflow-hidden">
               {searchSuggestions.map((v: string) => (
-                <div onClick={() => router.push(`/search?q=${v}`)}>
+                <div
+                  onClick={() => {
+                    setShowSuggestions(false);
+                    router.push(`/search?q=${v}`);
+                  }}
+                >
                   <span className="block w-full text-sm hover:bg-orange-500/10 py-2 px-4 cursor-pointer transition active:bg-orange-500/20">
                     {v}
                   </span>
