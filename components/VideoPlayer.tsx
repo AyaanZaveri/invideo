@@ -5,7 +5,6 @@ import videojs from "video.js";
 import "video.js/dist/video-js.css";
 import "videojs-vtt-thumbnails/dist/videojs-vtt-thumbnails.css";
 import dashjs from "dashjs";
-// require("videojs-contrib-dash");
 require("videojs-contrib-quality-levels");
 require("videojs-http-source-selector");
 require("videojs-vtt-thumbnails");
