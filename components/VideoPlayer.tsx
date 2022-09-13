@@ -85,7 +85,8 @@ const VideoPlayer = ({
 
                 // @ts-ignore
                 if (typeof player.overlay === "function" && player) {
-                  player.overlay({
+                  // @ts-ignore
+                  player?.overlay({
                     overlays: [
                       {
                         content: `A ${sponsor.category} has been skipped.`,
