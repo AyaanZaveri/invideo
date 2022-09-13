@@ -24,6 +24,7 @@ interface Props {
   poster: string;
   baseUrl: string;
   sponsors: any;
+  chapterTime: any;
 }
 
 const VideoPlayer = ({
@@ -35,8 +36,10 @@ const VideoPlayer = ({
   poster,
   baseUrl,
   sponsors,
+  chapterTime,
 }: Props) => {
   const videoRef = useRef<any>(null);
+  const [player, setPlayer] = useState<any>();
 
   console.log(sponsors);
 
@@ -50,8 +53,13 @@ const VideoPlayer = ({
   };
 
   useEffect(() => {
-    var player = videoRef ? videojs(videoRef?.current, videoOptions) : null;
+    var videoPlayer = videoRef
+      ? videojs(videoRef?.current, videoOptions)
+      : null;
+    setPlayer(videoPlayer);
+  }, []);
 
+  useEffect(() => {
     if (player) {
       // @ts-ignore
       if (typeof player.httpSourceSelector === "function" && player) {
@@ -114,10 +122,14 @@ const VideoPlayer = ({
         type: "application/dash+xml",
       });
     }
-  }, []);
+  }, [player]);
+
+  useEffect(() => {
+    player?.currentTime(chapterTime);
+  }, [chapterTime]);
 
   return (
-    <div className="w-3/4">
+    <div>
       <video
         ref={videoRef}
         controls
