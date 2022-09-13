@@ -41,10 +41,17 @@ const VideoPlayer = ({
 
   console.log(sponsors);
 
+  var videoOptions = {
+    autoplay: true,
+    plugins: {
+      httpSourceSelector: {
+        default: "high",
+      },
+    },
+  };
+
   useEffect(() => {
-    var player = videoRef
-      ? videojs(videoRef?.current, { autoplay: false })
-      : null;
+    var player = videoRef ? videojs(videoRef?.current, videoOptions) : null;
 
     if (player) {
       // @ts-ignore
