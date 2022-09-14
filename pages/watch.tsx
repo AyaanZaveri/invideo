@@ -84,7 +84,7 @@ const Watch = () => {
     <div className="font-['Inter']">
       <NavbarIndex />
       <Sidebar />
-      <div className="pl-52 pt-16 bg-stone-50 h-screen">
+      <div className="pl-52 pt-16 bg-stone-50 h-full">
         <div className="flex flex-row justify-around p-8 gap-8">
           <div className="flex flex-col gap-5 w-3/4">
             {watchData?.dashUrl.length > 0 &&
@@ -122,7 +122,7 @@ const Watch = () => {
                     }
                     alt=""
                   />
-                  <span className="font-semibold text-orange-800 inline-flex items-center gap-1">
+                  <span className="font-medium text-orange-800 inline-flex items-center gap-1">
                     {watchData?.author}
                     {pipedData?.uploaderVerified ? (
                       <HiCheckCircle className="h-4 w-4" />
@@ -161,12 +161,16 @@ const Watch = () => {
                 </div>
               </div>
             </div>
+            <div className="w-full border-t border-stone-200">
+              <div
+                className="mt-3 text-stone-800"
+                dangerouslySetInnerHTML={{ __html: pipedData?.description }}
+              />
+            </div>
           </div>
           <div className="flex flex-col items-center w-1/4">
             {/* Chapters */}
-            <div
-              className="bg-stone-100 flex items-start flex-col w-full h-96 rounded-lg p-5 gap-5 overflow-y-scroll"
-            >
+            <div className="bg-stone-100 flex items-start flex-col w-full h-96 rounded-lg p-5 gap-5 overflow-y-scroll">
               {pipedData?.chapters.map((chapter: any) => (
                 <div
                   className="flex flex-row gap-3 break-words group cursor-pointer"
