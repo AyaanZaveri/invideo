@@ -8,6 +8,7 @@ import NavbarIndex from "../components/Navbar";
 import Sidebar from "../components/Sidebar";
 import { HiCheckCircle } from "react-icons/hi";
 import { HandThumbUpIcon, HandThumbDownIcon } from "@heroicons/react/24/solid";
+import { Head } from "next/document";
 
 const Watch = () => {
   const { query } = useRouter();
@@ -20,6 +21,7 @@ const Watch = () => {
   const [sponsors, setSponsors] = useState<any>([]);
 
   const [chapterTime, setChapterTime] = useState<any>(0);
+  const [likeDislikeData, setLikeDislikeData] = useState<any>();
 
   const getSponsors = () => {
     axios
@@ -54,9 +56,18 @@ const Watch = () => {
     }
   };
 
+  const getLikeDislike = () => {
+    if (query.v) {
+      axios
+        .get(`https://returnyoutubedislikeapi.com/Votes?videoId=${query.v}`)
+        .then((res) => setLikeDislikeData(res.data));
+    }
+  };
+
   useEffect(() => {
     getWatchData();
     getPiped();
+    getLikeDislike();
     getSponsors();
   }, [query.v]);
 
@@ -84,6 +95,7 @@ const Watch = () => {
     <div className="font-['Inter']">
       <NavbarIndex />
       <Sidebar />
+      {/* <title>Invideo: {watchData?.title}</title> */}
       <div className="pl-52 pt-16 bg-stone-50 h-full">
         <div className="flex flex-row justify-around p-8 gap-8">
           <div className="flex flex-col gap-5 w-3/4">
@@ -145,14 +157,14 @@ const Watch = () => {
                 </span>
                 <div className="gap-2 inline-flex">
                   <span className="text-stone-600 inline-flex items-center gap-1">
-                    {String(watchData?.likeCount).replace(
+                    {String(likeDislikeData?.likes).replace(
                       /(.)(?=(\d{3})+$)/g,
                       "$1,"
                     )}{" "}
                     <HandThumbUpIcon className="h-4 w-4" />
                   </span>
                   <span className="text-stone-600 inline-flex items-center gap-1">
-                    {String(watchData?.dislikeCount).replace(
+                    {String(likeDislikeData?.dislikes).replace(
                       /(.)(?=(\d{3})+$)/g,
                       "$1,"
                     )}{" "}

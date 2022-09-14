@@ -14,7 +14,9 @@ export default class MyDoc extends Document {
   render(): any {
     return (
       <Html>
-        <Head />
+        <Head>
+          <link rel="shortcut icon" href="/favicon.ico" />
+        </Head>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link
           rel="preconnect"
