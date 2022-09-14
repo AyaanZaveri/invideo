@@ -3,7 +3,7 @@ import Search from './Search'
 
 const NavbarIndex = () => {
   return (
-    <div className='fixed w-full'>
+    <div className='fixed w-full z-10'>
         <Search />
     </div>
   )
