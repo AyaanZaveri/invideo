@@ -7,18 +7,18 @@ import videojs from "video.js";
 import NavbarIndex from "../components/Navbar";
 import Sidebar from "../components/Sidebar";
 import { HiCheckCircle } from "react-icons/hi";
-import { MdThumbUp, MdThumbDown } from "react-icons/md";
+import { HandThumbUpIcon, HandThumbDownIcon } from "@heroicons/react/24/solid";
 
 const Watch = () => {
   const { query } = useRouter();
   const [watchData, setWatchData] = useState<any>();
   const [pipedData, setPipedData] = useState<any>();
-  const baseUrl = "https://inv.riverside.rocks";
+  const baseUrl = "https://inv.vern.cc";
   // Using Piped to get uploaderVerified and Chapters
   const pipedBaseUrl = "https://pa.il.ax";
-  
+
   const [sponsors, setSponsors] = useState<any>([]);
-  
+
   const [chapterTime, setChapterTime] = useState<any>(0);
 
   const getSponsors = () => {
@@ -143,12 +143,20 @@ const Watch = () => {
                     )}{" "}
                   </b>
                 </span>
-                <div>
-                  <span className="text-stone-800">
-                    <MdThumbUp className="h-4 w-4" />
+                <div className="gap-2 inline-flex">
+                  <span className="text-stone-600 inline-flex items-center gap-1">
+                    {String(watchData?.likeCount).replace(
+                      /(.)(?=(\d{3})+$)/g,
+                      "$1,"
+                    )}{" "}
+                    <HandThumbUpIcon className="h-4 w-4" />
                   </span>
-                  <span className="text-stone-800">
-                    <MdThumbDown className="h-4 w-4" />
+                  <span className="text-stone-600 inline-flex items-center gap-1">
+                    {String(watchData?.dislikeCount).replace(
+                      /(.)(?=(\d{3})+$)/g,
+                      "$1,"
+                    )}{" "}
+                    <HandThumbDownIcon className="h-4 w-4" />
                   </span>
                 </div>
               </div>
@@ -156,11 +164,16 @@ const Watch = () => {
           </div>
           <div className="flex flex-col items-center w-1/4">
             {/* Chapters */}
-            <div className="bg-stone-100 flex items-start flex-col w-full rounded-lg p-5 gap-3 h-1/2 overflow-y-scroll">
+            <div
+              className="bg-stone-100 flex items-start flex-col w-full h-96 rounded-lg p-5 gap-5 overflow-y-scroll"
+            >
               {pipedData?.chapters.map((chapter: any) => (
-                <div className="flex flex-row gap-3 break-words group cursor-pointer" onClick={() => setChapterTime(chapter?.start)}>
+                <div
+                  className="flex flex-row gap-3 break-words group cursor-pointer"
+                  onClick={() => setChapterTime(chapter?.start)}
+                >
                   <img
-                    className="w-32 h-min rounded-md group-hover:brightness-90 group-active:brightness-75 transition"
+                    className="w-28 h-min rounded-md group-hover:brightness-90 group-active:brightness-75 transition"
                     src={watchData?.videoThumbnails[0]?.url}
                     alt=""
                   />

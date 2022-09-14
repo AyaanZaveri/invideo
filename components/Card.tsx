@@ -5,7 +5,7 @@ import React, { useEffect, useState } from "react";
 const Card = ({ videoResults }: any) => {
   const [videoData, setVideoData] = useState<any>();
 
-  const baseUrl = "https://inv.riverside.rocks/api/v1/";
+  const baseUrl = "https://inv.vern.cc/api/v1/";
 
   const getVideoData = (id: string) => {
     axios

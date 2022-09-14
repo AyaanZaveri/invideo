@@ -44,7 +44,7 @@ const VideoPlayer = ({
   console.log(sponsors);
 
   var videoOptions = {
-    autoplay: true,
+    autoplay: false,
     plugins: {
       httpSourceSelector: {
         default: "high",
