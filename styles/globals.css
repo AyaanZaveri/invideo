@@ -9,3 +9,28 @@ html {
 body {
   @apply h-full overflow-auto;
 }
+
+@layer utilities {
+  /* Scroll thumb styles */
+  .scrollbar::-webkit-scrollbar {
+    @apply w-[0.2rem];
+  }
+  .scrollbar::-webkit-scrollbar-thumb {
+    @apply rounded-lg bg-stone-200;
+  }
+  .scrollbar::-webkit-scrollbar-thumb:active {
+    @apply bg-stone-300;
+  }
+  .scrollbar::-webkit-scrollbar-thumb:hover {
+    @apply bg-stone-300;
+  }
+
+  /* Scroll track styles (Background) */
+  .scrollbar::-webkit-scrollbar-track {
+    @apply bg-stone-100;
+  }
+  .scrollbar::-webkit-scrollbar-track:hover,
+  .scrollbar::-webkit-scrollbar-track:active {
+    @apply bg-stone-100;
+  }
+}

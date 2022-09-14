@@ -13,7 +13,7 @@ const Watch = () => {
   const { query } = useRouter();
   const [watchData, setWatchData] = useState<any>();
   const [pipedData, setPipedData] = useState<any>();
-  const baseUrl = "https://inv.vern.cc";
+  const baseUrl = "https://inv.riverside.rocks";
   // Using Piped to get uploaderVerified and Chapters
   const pipedBaseUrl = "https://pa.il.ax";
 
@@ -170,27 +170,30 @@ const Watch = () => {
           </div>
           <div className="flex flex-col items-center w-1/4">
             {/* Chapters */}
-            <div className="bg-stone-100 flex items-start flex-col w-full h-96 rounded-lg p-5 gap-5 overflow-y-scroll">
-              {pipedData?.chapters.map((chapter: any) => (
-                <div
-                  className="flex flex-row gap-3 break-words group cursor-pointer"
-                  onClick={() => setChapterTime(chapter?.start)}
-                >
-                  <img
-                    className="w-28 h-min rounded-md group-hover:brightness-90 group-active:brightness-75 transition"
-                    src={watchData?.videoThumbnails[0]?.url}
-                    alt=""
-                  />
-                  <div className="flex flex-col gap-0.5">
-                    <span className="font-bold text-stone-800">
-                      {chapter?.title}
-                    </span>
-                    <span className="font-bold text-xs text-orange-600 bg-orange-100 py-0.5 px-1.5 w-min text-center rounded">
-                      {fancyTimeFormat(chapter?.start)}
-                    </span>
+            <div className="flex flex-col gap-3">
+              <span className="text-xl font-bold text-stone-800">Chapters</span>
+              <div className="flex items-start flex-col w-full h-96 overflow-y-scroll scrollbar pr-2">
+                {pipedData?.chapters.map((chapter: any) => (
+                  <div
+                    className="flex flex-row gap-3 break-words cursor-pointer rounded-lg transition duration-200 hover:bg-stone-200 px-2 py-2 w-full"
+                    onClick={() => setChapterTime(chapter?.start)}
+                  >
+                    <img
+                      className="w-28 h-min rounded-md transition"
+                      src={watchData?.videoThumbnails[0]?.url}
+                      alt=""
+                    />
+                    <div className="flex flex-col gap-1 justify-center">
+                      <span className="font-bold text-stone-800 text-sm">
+                        {chapter?.title}
+                      </span>
+                      <span className="font-semibold text-xs text-orange-600 bg-orange-100 py-0.5 px-1.5 w-min text-center rounded">
+                        {fancyTimeFormat(chapter?.start)}
+                      </span>
+                    </div>
                   </div>
-                </div>
-              ))}
+                ))}
+              </div>
             </div>
           </div>
         </div>

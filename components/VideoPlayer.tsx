@@ -106,7 +106,7 @@ const VideoPlayer = ({
                         start: sponsor.segment[1],
                         end: sponsor.segment[1] + 3,
                         class:
-                          "p-5 text-lg font-semibold text-gray-300 opacity-80 py-3 backdrop-blur inline-flex justify-end w-full items-end transition ease-in-out duration-500",
+                          "p-5 text-lg font-semibold text-orange-500 opacity-80 py-3 backdrop-blur inline-flex justify-end w-full items-end transition ease-in-out duration-500",
                       },
                     ],
                   });
