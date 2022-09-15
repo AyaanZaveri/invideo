@@ -91,6 +91,8 @@ const Watch = () => {
     return ret;
   }
 
+  console.log(watchData?.authorThumbnails[3]?.url)
+
   return (
     <div className="font-['Inter']">
       <NavbarIndex />
@@ -127,11 +129,7 @@ const Watch = () => {
                 <div className="inline-flex gap-2 items-center">
                   <img
                     className="w-8 h-8 rounded-full"
-                    src={
-                      watchData?.authorThumbnails[
-                        watchData?.authorThumbnails.length - 1
-                      ]?.url
-                    }
+                    src={watchData?.authorThumbnails[2]?.url}
                     alt=""
                   />
                   <span className="font-medium text-orange-800 inline-flex items-center gap-1">
