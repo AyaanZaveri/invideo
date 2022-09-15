@@ -91,7 +91,7 @@ const Watch = () => {
     return ret;
   }
 
-  console.log(watchData?.authorThumbnails[3]?.url)
+  console.log(watchData?.authorThumbnails[3]?.url);
 
   return (
     <div className="font-['Inter']">
@@ -180,6 +180,7 @@ const Watch = () => {
           </div>
           <div className="flex flex-col items-center w-1/4">
             {/* Chapters */}
+            {pipedData?.chapters.length > 0 ? (
             <div className="flex flex-col gap-3 w-full">
               <span className="text-xl font-bold text-stone-800">Chapters</span>
               <div className="flex items-start flex-col w-full h-96 overflow-y-scroll scrollbar pr-2">
@@ -205,6 +206,7 @@ const Watch = () => {
                 ))}
               </div>
             </div>
+            ) : null}
           </div>
         </div>
       </div>
