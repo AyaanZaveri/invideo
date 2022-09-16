@@ -11,7 +11,12 @@ import { HandThumbUpIcon, HandThumbDownIcon } from "@heroicons/react/24/solid";
 import { Head } from "next/document";
 import { fancyTimeFormat } from "../utils/fancyTimeFormat";
 import { commaNumber } from "../utils/commaNumber";
-import { BsBadge4KFill, BsBadge8KFill, BsBadgeCcFill } from "react-icons/bs";
+import {
+  BsBadge4KFill,
+  BsBadge8KFill,
+  BsBadgeCcFill,
+  BsBadgeHdFill,
+} from "react-icons/bs";
 
 const Watch = () => {
   const { query } = useRouter();
@@ -113,18 +118,19 @@ const Watch = () => {
                     {watchData?.title}
                   </span>
                   <div className="inline-flex gap-1 text-stone-800">
-                    <div>
-                      {watchData?.adaptiveFormats.find(
-                        (element: any) => element.resolution == "2160p"
-                      ) ? (
-                        <BsBadge4KFill className="w-5 h-5" />
-                      ) : null}
-                    </div>
-                    <div>
-                      {watchData?.captions ? (
-                        <BsBadgeCcFill className="w-5 h-5" />
-                      ) : null}
-                    </div>
+                    {watchData?.adaptiveFormats.find(
+                      (element: any) => element.resolution == "2160p"
+                    ) ? (
+                      <BsBadge4KFill className="w-5 h-5" />
+                    ) : null}
+                    {watchData?.adaptiveFormats.find(
+                      (element: any) => element.resolution == "1080p"
+                    ) ? (
+                      <BsBadgeHdFill className="w-5 h-5" />
+                    ) : null}
+                    {watchData?.captions ? (
+                      <BsBadgeCcFill className="w-5 h-5" />
+                    ) : null}
                   </div>
                 </div>
                 <div className="inline-flex gap-2 items-center">
