@@ -9,6 +9,9 @@ import Sidebar from "../components/Sidebar";
 import { HiCheckCircle } from "react-icons/hi";
 import { HandThumbUpIcon, HandThumbDownIcon } from "@heroicons/react/24/solid";
 import { Head } from "next/document";
+import { fancyTimeFormat } from "../utils/fancyTimeFormat";
+import { commaNumber } from "../utils/commaNumber";
+import { BsBadge4KFill, BsBadge8KFill, BsBadgeCcFill } from "react-icons/bs";
 
 const Watch = () => {
   const { query } = useRouter();
@@ -73,24 +76,6 @@ const Watch = () => {
 
   console.log(pipedData);
 
-  function fancyTimeFormat(duration: number) {
-    // Hours, minutes and seconds
-    var hrs = ~~(duration / 3600);
-    var mins = ~~((duration % 3600) / 60);
-    var secs = ~~duration % 60;
-
-    // Output like "1:01" or "4:03:59" or "123:03:59"
-    var ret = "";
-
-    if (hrs > 0) {
-      ret += "" + hrs + ":" + (mins < 10 ? "0" : "");
-    }
-
-    ret += "" + mins + ":" + (secs < 10 ? "0" : "");
-    ret += "" + secs;
-    return ret;
-  }
-
   console.log(watchData?.authorThumbnails[3]?.url);
 
   return (
@@ -123,9 +108,25 @@ const Watch = () => {
             ) : null}
             <div className="flex flex-row justify-between">
               <div className="flex flex-col gap-1.5">
-                <span className="text-2xl font-bold text-stone-800">
-                  {watchData?.title}
-                </span>
+                <div className="inline-flex gap-2 items-center">
+                  <span className="text-2xl font-bold text-stone-800">
+                    {watchData?.title}
+                  </span>
+                  <div className="inline-flex gap-1 text-stone-800">
+                    <div>
+                      {watchData?.adaptiveFormats.find(
+                        (element: any) => element.resolution == "2160p"
+                      ) ? (
+                        <BsBadge4KFill className="w-5 h-5" />
+                      ) : null}
+                    </div>
+                    <div>
+                      {watchData?.captions ? (
+                        <BsBadgeCcFill className="w-5 h-5" />
+                      ) : null}
+                    </div>
+                  </div>
+                </div>
                 <div className="inline-flex gap-2 items-center">
                   <img
                     className="w-8 h-8 rounded-full"
@@ -148,29 +149,17 @@ const Watch = () => {
                 ) : null}
                 {watchData?.viewCount ? (
                   <span className="text-stone-800">
-                    Views ·{" "}
-                    <b>
-                      {String(watchData?.viewCount).replace(
-                        /(.)(?=(\d{3})+$)/g,
-                        "$1,"
-                      )}{" "}
-                    </b>
+                    Views · <b>{commaNumber(watchData?.viewCount)} </b>
                   </span>
                 ) : null}
                 {likeDislikeData?.likes & likeDislikeData?.dislikes ? (
                   <div className="gap-2 inline-flex">
                     <span className="text-stone-600 inline-flex items-center gap-1">
-                      {String(likeDislikeData?.likes).replace(
-                        /(.)(?=(\d{3})+$)/g,
-                        "$1,"
-                      )}{" "}
+                      {commaNumber(likeDislikeData?.likes)}{" "}
                       <HandThumbUpIcon className="h-4 w-4" />
                     </span>
                     <span className="text-stone-600 inline-flex items-center gap-1">
-                      {String(likeDislikeData?.dislikes).replace(
-                        /(.)(?=(\d{3})+$)/g,
-                        "$1,"
-                      )}{" "}
+                      {commaNumber(likeDislikeData?.dislikes)}{" "}
                       <HandThumbDownIcon className="h-4 w-4" />
                     </span>
                   </div>
@@ -184,7 +173,7 @@ const Watch = () => {
               />
             </div>
           </div>
-          <div className="flex flex-col w-1/4">
+          <div className="flex flex-col w-1/4 select-none">
             <div className="flex flex-col items-center">
               {/* Chapters */}
               {pipedData?.chapters.length > 0 ? (
@@ -195,7 +184,7 @@ const Watch = () => {
                   <div className="flex items-start flex-col w-full h-96 overflow-y-scroll scrollbar pr-2 bg-stone-100 p-3 rounded-lg">
                     {pipedData?.chapters.map((chapter: any) => (
                       <div
-                        className="flex flex-row gap-3 break-words cursor-pointer rounded-lg transition duration-200 hover:bg-stone-200 px-2 py-2 w-full"
+                        className="flex flex-row gap-3 break-words cursor-pointer rounded-lg transition duration-200 hover:bg-stone-200 active:bg-stone-300 px-2 py-2 w-full"
                         onClick={() => setChapterTime(chapter?.start)}
                       >
                         <img
@@ -228,7 +217,7 @@ const Watch = () => {
                   <div className="flex items-start flex-col w-full h-96 pr-2">
                     {watchData?.recommendedVideos?.map((video: any) => (
                       <div
-                        className="flex flex-row gap-3 break-words cursor-pointer rounded-lg transition duration-200 hover:bg-stone-200 px-2 py-2 w-full"
+                        className="flex flex-row gap-3 break-words cursor-pointer rounded-lg transition duration-200 hover:bg-stone-200 active:bg-stone-300 px-2 py-2 w-full"
                         onClick={() =>
                           (location.href = `/watch?v=${video?.videoId}`)
                         }
