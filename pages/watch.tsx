@@ -141,34 +141,40 @@ const Watch = () => {
                 </div>
               </div>
               <div className="flex flex-col items-end text-end">
-                <span className="text-orange-800">
-                  Published · <b>{watchData?.publishedText}</b>
-                </span>
-                <span className="text-stone-800">
-                  Views ·{" "}
-                  <b>
-                    {String(watchData?.viewCount).replace(
-                      /(.)(?=(\d{3})+$)/g,
-                      "$1,"
-                    )}{" "}
-                  </b>
-                </span>
-                <div className="gap-2 inline-flex">
-                  <span className="text-stone-600 inline-flex items-center gap-1">
-                    {String(likeDislikeData?.likes).replace(
-                      /(.)(?=(\d{3})+$)/g,
-                      "$1,"
-                    )}{" "}
-                    <HandThumbUpIcon className="h-4 w-4" />
+                {watchData?.publishedText ? (
+                  <span className="text-orange-800">
+                    Published · <b>{watchData?.publishedText}</b>
                   </span>
-                  <span className="text-stone-600 inline-flex items-center gap-1">
-                    {String(likeDislikeData?.dislikes).replace(
-                      /(.)(?=(\d{3})+$)/g,
-                      "$1,"
-                    )}{" "}
-                    <HandThumbDownIcon className="h-4 w-4" />
+                ) : null}
+                {watchData?.viewCount ? (
+                  <span className="text-stone-800">
+                    Views ·{" "}
+                    <b>
+                      {String(watchData?.viewCount).replace(
+                        /(.)(?=(\d{3})+$)/g,
+                        "$1,"
+                      )}{" "}
+                    </b>
                   </span>
-                </div>
+                ) : null}
+                {likeDislikeData?.likes & likeDislikeData?.dislikes ? (
+                  <div className="gap-2 inline-flex">
+                    <span className="text-stone-600 inline-flex items-center gap-1">
+                      {String(likeDislikeData?.likes).replace(
+                        /(.)(?=(\d{3})+$)/g,
+                        "$1,"
+                      )}{" "}
+                      <HandThumbUpIcon className="h-4 w-4" />
+                    </span>
+                    <span className="text-stone-600 inline-flex items-center gap-1">
+                      {String(likeDislikeData?.dislikes).replace(
+                        /(.)(?=(\d{3})+$)/g,
+                        "$1,"
+                      )}{" "}
+                      <HandThumbDownIcon className="h-4 w-4" />
+                    </span>
+                  </div>
+                ) : null}
               </div>
             </div>
             <div className="w-full border-t border-stone-200">
@@ -186,7 +192,7 @@ const Watch = () => {
                   <span className="text-xl font-bold text-stone-800">
                     Chapters
                   </span>
-                  <div className="flex items-start flex-col w-full h-96 overflow-y-scroll scrollbar pr-2">
+                  <div className="flex items-start flex-col w-full h-96 overflow-y-scroll scrollbar pr-2 bg-stone-100 p-3 rounded-lg">
                     {pipedData?.chapters.map((chapter: any) => (
                       <div
                         className="flex flex-row gap-3 break-words cursor-pointer rounded-lg transition duration-200 hover:bg-stone-200 px-2 py-2 w-full"
@@ -212,9 +218,13 @@ const Watch = () => {
               ) : null}
             </div>
             <div className="flex flex-col items-center">
-              {/* Chapters */}
+              {/* Video Recommendations */}
               {watchData?.recommendedVideos?.length > 0 ? (
-                <div className="flex flex-col gap-3 w-full">
+                <div
+                  className={`flex flex-col gap-3 w-full ${
+                    pipedData?.chapters.length > 0 ? "mt-6" : ""
+                  }`}
+                >
                   <div className="flex items-start flex-col w-full h-96 pr-2">
                     {watchData?.recommendedVideos?.map((video: any) => (
                       <div
