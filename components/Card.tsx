@@ -42,7 +42,7 @@ const Card = ({ videoResults }: any) => {
                     : "https://dummyimage.com/1280x720/fff/aaa"
                 }
               />
-              <span className="absolute bottom-0 right-0 m-1 font-semibold text-xs text-orange-600 bg-orange-100 py-0.5 px-1.5 w-min text-center rounded">
+              <span className="absolute bottom-0 right-0 m-1 font-semibold text-xs text-orange-600 bg-orange-100/75 backdrop-blur-md py-0.5 px-1.5 w-min text-center rounded">
                 {fancyTimeFormat(videoResults?.lengthSeconds)}
               </span>
             </div>

@@ -228,7 +228,7 @@ const Watch = () => {
                               className="w-full object-contain min-h-0 h-full rounded-md transition"
                               src={video?.videoThumbnails[0]?.url}
                             />
-                            <span className="absolute bottom-0 right-0 m-1 font-semibold text-xs text-orange-600 bg-orange-100 py-0.5 px-1.5 w-min text-center rounded">
+                            <span className="absolute bottom-0 right-0 m-1 font-semibold text-xs text-orange-600 bg-orange-100/75 backdrop-blur-md py-0.5 px-1.5 w-min text-center rounded">
                               {fancyTimeFormat(video?.lengthSeconds)}
                             </span>
                           </div>
