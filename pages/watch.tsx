@@ -178,7 +178,7 @@ const Watch = () => {
               />
             </div>
           </div>
-          <div className="flex flex-col w-1/4 gap-8">
+          <div className="flex flex-col w-1/4">
             <div className="flex flex-col items-center">
               {/* Chapters */}
               {pipedData?.chapters.length > 0 ? (
@@ -215,20 +215,28 @@ const Watch = () => {
               {/* Chapters */}
               {watchData?.recommendedVideos?.length > 0 ? (
                 <div className="flex flex-col gap-3 w-full">
-                  <div className="flex items-start flex-col w-full h-96 overflow-y-scroll scrollbar pr-2">
-                    {watchData?.recommendedVideos?.map((chapter: any) => (
-                      <div className="flex flex-row gap-3 break-words cursor-pointer rounded-lg transition duration-200 hover:bg-stone-200 px-2 py-2 w-full">
-                        <img
-                          className="w-28 h-min rounded-md transition"
-                          src={watchData?.videoThumbnails[0]?.url}
-                          alt=""
-                        />
-                        <div className="flex flex-col gap-1 justify-center">
+                  <div className="flex items-start flex-col w-full h-96 pr-2">
+                    {watchData?.recommendedVideos?.map((video: any) => (
+                      <div
+                        className="flex flex-row gap-3 break-words cursor-pointer rounded-lg transition duration-200 hover:bg-stone-200 px-2 py-2 w-full"
+                        onClick={() =>
+                          (location.href = `/watch?v=${video?.videoId}`)
+                        }
+                      >
+                        <div className="h-min">
+                          <div className="h-full w-28 grid relative">
+                            <img
+                              className="w-full object-contain min-h-0 h-full rounded-md transition"
+                              src={video?.videoThumbnails[0]?.url}
+                            />
+                            <span className="absolute bottom-0 right-0 m-1 font-semibold text-xs text-orange-600 bg-orange-100 py-0.5 px-1.5 w-min text-center rounded">
+                              {fancyTimeFormat(video?.lengthSeconds)}
+                            </span>
+                          </div>
+                        </div>
+                        <div className="flex items-center">
                           <span className="font-bold text-stone-800 text-sm">
-                            {chapter?.title}
-                          </span>
-                          <span className="font-semibold text-xs text-orange-600 bg-orange-100 py-0.5 px-1.5 w-min text-center rounded">
-                            {fancyTimeFormat(chapter?.start)}
+                            {video?.title}
                           </span>
                         </div>
                       </div>
