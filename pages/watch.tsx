@@ -117,21 +117,6 @@ const Watch = () => {
                   <span className="text-2xl font-bold text-stone-800">
                     {watchData?.title}
                   </span>
-                  <div className="inline-flex gap-1 text-stone-800">
-                    {watchData?.adaptiveFormats.find(
-                      (element: any) => element.resolution == "2160p"
-                    ) ? (
-                      <BsBadge4KFill className="w-5 h-5" />
-                    ) : null}
-                    {watchData?.adaptiveFormats.find(
-                      (element: any) => element.resolution == "1080p"
-                    ) ? (
-                      <BsBadgeHdFill className="w-5 h-5" />
-                    ) : null}
-                    {watchData?.captions ? (
-                      <BsBadgeCcFill className="w-5 h-5" />
-                    ) : null}
-                  </div>
                 </div>
                 <div className="inline-flex gap-2 items-center">
                   <img
@@ -159,15 +144,28 @@ const Watch = () => {
                   </span>
                 ) : null}
                 {likeDislikeData?.likes & likeDislikeData?.dislikes ? (
-                  <div className="gap-2 inline-flex">
-                    <span className="text-stone-600 inline-flex items-center gap-1">
-                      {commaNumber(likeDislikeData?.likes)}{" "}
-                      <HandThumbUpIcon className="h-4 w-4" />
-                    </span>
-                    <span className="text-stone-600 inline-flex items-center gap-1">
-                      {commaNumber(likeDislikeData?.dislikes)}{" "}
-                      <HandThumbDownIcon className="h-4 w-4" />
-                    </span>
+                  <div>
+                    <div className="gap-2 inline-flex">
+                      <span className="text-stone-600 inline-flex items-center gap-1">
+                        {commaNumber(likeDislikeData?.likes)}{" "}
+                        <HandThumbUpIcon className="h-4 w-4" />
+                      </span>
+                      <span className="text-stone-600 inline-flex items-center gap-1">
+                        {commaNumber(likeDislikeData?.dislikes)}{" "}
+                        <HandThumbDownIcon className="h-4 w-4" />
+                      </span>
+                    </div>
+                    <div
+                      className="h-1 bg-blue-500"
+                      style={{
+                        width:
+                          (likeDislikeData?.likes /
+                            (likeDislikeData?.dislikes +
+                              likeDislikeData?.likes)) *
+                            100 +
+                          "%",
+                      }}
+                    ></div>
                   </div>
                 ) : null}
               </div>
