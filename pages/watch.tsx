@@ -155,17 +155,19 @@ const Watch = () => {
                         <HandThumbDownIcon className="h-4 w-4" />
                       </span>
                     </div>
-                    <div
-                      className="h-1 bg-blue-500"
-                      style={{
-                        width:
-                          (likeDislikeData?.likes /
-                            (likeDislikeData?.dislikes +
-                              likeDislikeData?.likes)) *
-                            100 +
-                          "%",
-                      }}
-                    ></div>
+                    <div className="bg-orange-200 w-full">
+                      <div
+                        className="h-0.5 mt-0.5 bg-orange-500"
+                        style={{
+                          width:
+                            (likeDislikeData?.likes /
+                              (likeDislikeData?.dislikes +
+                                likeDislikeData?.likes)) *
+                              100 +
+                            "%",
+                        }}
+                      ></div>
+                    </div>
                   </div>
                 ) : null}
               </div>
