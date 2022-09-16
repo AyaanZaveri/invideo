@@ -124,12 +124,17 @@ const Watch = () => {
                     src={watchData?.authorThumbnails[2]?.url}
                     alt=""
                   />
-                  <span className="font-medium text-orange-800 inline-flex items-center gap-1">
-                    {watchData?.author}
-                    {pipedData?.uploaderVerified ? (
-                      <HiCheckCircle className="h-4 w-4" />
-                    ) : null}
-                  </span>
+                  <div className="flex flex-col">
+                    <span className="font-medium text-orange-800 inline-flex items-center gap-1">
+                      {watchData?.author}
+                      {pipedData?.uploaderVerified ? (
+                        <HiCheckCircle className="h-4 w-4" />
+                      ) : null}
+                    </span>
+                    <span className="text-stone-600 text-xs inline-flex items-center gap-1">
+                      {watchData?.subCountText} Subscribers
+                    </span>
+                  </div>
                 </div>
               </div>
               <div className="flex flex-col items-end text-end">
