@@ -155,9 +155,9 @@ const Watch = () => {
                         <HandThumbDownIcon className="h-4 w-4" />
                       </span>
                     </div>
-                    <div className="bg-orange-200 w-full">
+                    <div className="bg-orange-200 w-full rounded-full">
                       <div
-                        className="h-0.5 mt-0.5 bg-orange-500"
+                        className="h-0.5 mt-0.5 z-30 bg-orange-500 rounded-full"
                         style={{
                           width:
                             (likeDislikeData?.likes /
