@@ -7,7 +7,7 @@ import Card from "../components/Card";
 
 const Search = () => {
   const { query } = useRouter();
-  const baseUrl = "https://inv.riverside.rocks/api/v1";
+  const baseUrl = "https://inv.vern.cc/api/v1";
   const [searchRes, setSearchRes] = useState<any>();
 
   const getSearch = (q: string) => {
@@ -18,7 +18,7 @@ const Search = () => {
           .then((res) => setSearchRes(res.data));
       }
     } catch (error) {
-        console.log("Error")
+      console.log("Error");
     }
   };
 
@@ -28,8 +28,6 @@ const Search = () => {
     }
   }, [query.q]);
 
-  console.log(searchRes)
-
   return (
     <div className="font-['Inter']">
       <NavbarIndex />
@@ -37,7 +35,7 @@ const Search = () => {
       {searchRes ? (
         <div>
           <div className="pl-52 pt-16 bg-stone-50 h-full">
-            <div className="rounded-lg flex flex-row flex-wrap justify-center gap-12 py-8 px-2">
+            <div className="rounded-lg flex flex-row flex-wrap justify-center gap-y-8 gap-x-12 py-8 px-2">
               {typeof searchRes !== "undefined" && searchRes.length > 0
                 ? searchRes.map((v: any) => <Card videoResults={v} />)
                 : null}

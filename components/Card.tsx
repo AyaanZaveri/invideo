@@ -5,21 +5,21 @@ import { commaNumber } from "../utils/commaNumber";
 import { fancyTimeFormat } from "../utils/fancyTimeFormat";
 
 const Card = ({ videoResults }: any) => {
-  const [videoData, setVideoData] = useState<any>();
+  // const [videoData, setVideoData] = useState<any>();
 
-  const baseUrl = "https://inv.riverside.rocks/api/v1/";
+  // const baseUrl = "https://inv.vern.cc/api/v1/";
 
-  const getVideoData = (id: string) => {
-    axios
-      .get(`${baseUrl}/api/v1/channels/${id}`)
-      .then((res) => setVideoData(res.data));
-  };
+  // const getVideoData = (id: string) => {
+  //   axios
+  //     .get(`${baseUrl}/api/v1/channels/${id}`)
+  //     .then((res) => setVideoData(res.data));
+  // };
 
-  useEffect(() => {
-    if (videoResults) {
-      getVideoData(videoResults?.videoId);
-    }
-  }, []);
+  // useEffect(() => {
+  //   if (videoResults) {
+  //     getVideoData(videoResults?.videoId);
+  //   }
+  // }, []);
 
   console.log(videoResults);
 
@@ -27,7 +27,7 @@ const Card = ({ videoResults }: any) => {
 
   return (
     <div>
-      {videoResults?.type == "video" ? (
+      {videoResults?.type == "video" || videoResults?.type == "shortVideo" ? (
         <div
           className="w-64 flex flex-col gap-2"
           onClick={() => router.push(`/watch?v=${videoResults?.videoId}`)}
@@ -35,7 +35,7 @@ const Card = ({ videoResults }: any) => {
           <div className="h-min">
             <div className="h-full w-64 grid relative">
               <img
-                className="w-full object-contain min-h-0 h-full rounded-md transition"
+                className="w-full object-contain min-h-0 h-full rounded-lg transition shadow-lg hover:brightness-90 active:brightness-75 hover:cursor-pointer"
                 src={
                   videoResults?.videoThumbnails?.length > 0
                     ? videoResults?.videoThumbnails[1]?.url.replace(":3000", "")

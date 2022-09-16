@@ -22,7 +22,7 @@ const Watch = () => {
   const { query } = useRouter();
   const [watchData, setWatchData] = useState<any>();
   const [pipedData, setPipedData] = useState<any>();
-  const baseUrl = "https://inv.riverside.rocks";
+  const baseUrl = "https://inv.vern.cc";
   // Using Piped to get uploaderVerified and Chapters
   const pipedBaseUrl = "https://pa.il.ax";
 
@@ -88,7 +88,7 @@ const Watch = () => {
       <NavbarIndex />
       <Sidebar />
       {/* <title>Invideo: {watchData?.title}</title> */}
-      <div className="pl-52 pt-16 bg-stone-50 h-full">
+      <div className="pl-52 pt-16">
         <div className="flex flex-row justify-around p-8 gap-8">
           <div className="flex flex-col gap-5 w-3/4">
             {watchData?.dashUrl.length > 0 &&
@@ -175,7 +175,7 @@ const Watch = () => {
             <div className="w-full border-t border-stone-200">
               <div
                 className="mt-3 text-stone-800"
-                dangerouslySetInnerHTML={{ __html: pipedData?.description }}
+                dangerouslySetInnerHTML={{ __html: watchData?.descriptionHtml }}
               />
             </div>
           </div>
