@@ -58,6 +58,14 @@
     "@nodelib/fs.scandir" "2.1.5"
     "fastq" "^1.6.0"
 
+"@silvermine/videojs-quality-selector@^1.2.5":
+  "integrity" "sha512-cielchUzL8r2EX01S7PfR54tTbxDZR53xIDJoUi9Wg6pM2X+ftdJD6XiIDVOjPlBoG94iuG9LJwUtjX5IhrWZQ=="
+  "resolved" "https://registry.npmjs.org/@silvermine/videojs-quality-selector/-/videojs-quality-selector-1.2.5.tgz"
+  "version" "1.2.5"
+  dependencies:
+    "class.extend" "0.9.1"
+    "underscore" "1.13.1"
+
 "@swc/helpers@0.4.11":
   "integrity" "sha512-rEUrBSGIoSFuYxwBYtlUFMlE2CwGhmW+w9355/5oduSw8e5h2+Tj4UrAGNNgP9915++wj5vkQo0UuOBqOAq4nw=="
   "resolved" "https://registry.npmjs.org/@swc/helpers/-/helpers-0.4.11.tgz"
@@ -424,6 +432,11 @@
     "readdirp" "~3.6.0"
   optionalDependencies:
     "fsevents" "~2.3.2"
+
+"class.extend@0.9.1":
+  "integrity" "sha512-Tzj+2kAkZs+iGiUOUoKvtj4c/SjeVdKZXg/NbLTGKu0kp66h69dyMHQwOSzuyIghXAUswuY24TZc0HdaJCXx2A=="
+  "resolved" "https://registry.npmjs.org/class.extend/-/class.extend-0.9.1.tgz"
+  "version" "0.9.1"
 
 "codem-isoboxer@0.3.6":
   "integrity" "sha512-LuO8/7LW6XuR5ERn1yavXAfodGRhuY2yP60JTZIw5yNYMCE5lUVbk3NFUCJxjnphQH+Xemp5hOGb1LgUXm00Xw=="
@@ -1960,6 +1973,11 @@
   "resolved" "https://registry.npmjs.org/underscore/-/underscore-1.7.0.tgz"
   "version" "1.7.0"
 
+"underscore@1.13.1":
+  "integrity" "sha512-hzSoAVtJF+3ZtiFX0VgfFPHEDRm7Y/QPjGyNo4TVdnDTdft3tr8hEkD25a1jC+TjTuE7tkHGKkhwCgs9dgBB2g=="
+  "resolved" "https://registry.npmjs.org/underscore/-/underscore-1.13.1.tgz"
+  "version" "1.13.1"
+
 "update-browserslist-db@^1.0.5":
   "integrity" "sha512-iN/XYesmZ2RmmWAiI4Z5rq0YqSiv0brj9Ce9CfhNE4xIW2h+MFxcgkxIzZ+ShkFPUkjU3gQ+3oypadD3RAMtrg=="
   "resolved" "https://registry.npmjs.org/update-browserslist-db/-/update-browserslist-db-1.0.7.tgz"
@@ -2032,7 +2050,7 @@
     "videojs-vtt.js" "0.12.6"
     "xhr" "2.4.0"
 
-"video.js@^5.18.0 || ^6 || ^7", "video.js@^5.19.2 || ^6.6.0 || ^7.2.0", "video.js@^6 || ^7", "video.js@^7.0.0", "video.js@^7.12.1", "video.js@^7.5.5":
+"video.js@^5.18.0 || ^6 || ^7", "video.js@^5.19.2 || ^6.6.0 || ^7.2.0", "video.js@^6 || ^7", "video.js@^7.0.0", "video.js@^7.12.1", "video.js@^7.5.5", "video.js@>=6.0.0":
   "integrity" "sha512-0Owl7q4Zbm6YHX94P9WVqQ2vnpfeNyOtTNwuTEEoKovZogoqV2McOUmsQGM4Edtg4vGTiP74Fv6HVa1V6FeRfg=="
   "resolved" "https://registry.npmjs.org/video.js/-/video.js-7.12.1.tgz"
   "version" "7.12.1"
