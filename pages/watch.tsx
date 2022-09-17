@@ -22,6 +22,7 @@ const Watch = () => {
   const { query } = useRouter();
   const [watchData, setWatchData] = useState<any>();
   const [pipedData, setPipedData] = useState<any>();
+  const [showMore, setShowMore] = useState<boolean>(false);
   const baseUrl = "https://inv.riverside.rocks";
   // Using Piped to get uploaderVerified and Chapters
   const pipedBaseUrl = "https://pa.il.ax";
@@ -178,15 +179,27 @@ const Watch = () => {
               </div>
             </div>
             <div className="w-full border-t border-stone-200">
-              <div
-                className="mt-3 whitespace-pre text-stone-800"
-                dangerouslySetInnerHTML={{
-                  __html: watchData?.descriptionHtml.replace(
-                    "<a ",
-                    `<a target="_blank"`
-                  ),
-                }}
-              />
+              {showMore ? (
+                <div
+                  className="mt-3 text-stone-800"
+                  dangerouslySetInnerHTML={{
+                    __html: watchData?.descriptionHtml.replaceAll(
+                      /\n/g,
+                      "<br />"
+                    ),
+                  }}
+                />
+              ) : (
+                <div
+                  className="mt-3 text-stone-800"
+                  dangerouslySetInnerHTML={{
+                    __html: watchData?.descriptionHtml.replaceAll(
+                      /\n/g,
+                      "<br />"
+                    ),
+                  }}
+                />
+              )}
             </div>
           </div>
           <div className="flex flex-col w-1/4 select-none">
