@@ -224,7 +224,7 @@ const Watch = () => {
               )}
               <div className="mt-3 w-full border-t border-stone-200"></div>
               {/* Comments */}
-              <div className="mt-3 flex flex-col gap-8">
+              <div className="mt-6 flex flex-col gap-8">
                 {commentsData
                   ? commentsData?.comments.map((comment: any) => (
                       <div className="flex flex-row gap-3 items-start">

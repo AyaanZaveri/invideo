@@ -35,6 +35,6 @@ body {
   }
 
   a {
-    @apply underline text-orange-600 hover:text-orange-800 visited:text-orange-900 transition-colors duration-200;
+    @apply underline text-orange-600 hover:text-orange-800 visited:text-orange-900 transition-all duration-200;
   }
 }
