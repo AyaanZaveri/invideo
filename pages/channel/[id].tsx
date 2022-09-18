@@ -93,7 +93,6 @@ const Channel = () => {
               ) : null}
               {channelData?.isFamilyFriendly ? (
                 <div className="text-orange-600 inline-flex gap-2 items-center">
-                  <FontAwesomeIcon icon="fa-solid fa-family" />
                   <span className="font-medium text inline-flex items-center gap-1">
                     Family Friendly
                   </span>
