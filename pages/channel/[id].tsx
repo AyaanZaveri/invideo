@@ -4,7 +4,6 @@ import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
 import { HiCheckCircle } from "react-icons/hi";
 import NavbarIndex from "../../components/Navbar";
-import Sidebar from "../../components/Sidebar";
 import { commaNumber } from "../../utils/commaNumber";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Card from "../../components/Card";
@@ -42,7 +41,7 @@ const Channel = () => {
   return (
     <div className="font-['Inter']">
       <NavbarIndex />
-      <Sidebar />
+
       <div className="pt-16">
         <div className="flex flex-col">
           <img

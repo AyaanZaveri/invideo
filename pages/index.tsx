@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import Card from "../components/Card";
 import { HiOutlineSearch } from "react-icons/hi";
-import Sidebar from "../components/Sidebar";
+
 import NavbarIndex from "../components/Navbar";
 import { useRouter } from "next/router";
 
@@ -38,7 +38,7 @@ const Home: NextPage = () => {
   return (
     <div className="font-['Inter']">
       <NavbarIndex />
-      <Sidebar />
+
       {popular ? (
         <div className="pt-16 bg-stone-50 h-full">
           <div className="rounded-lg flex flex-row flex-wrap justify-center gap-y-8 gap-x-12 py-8 px-2">

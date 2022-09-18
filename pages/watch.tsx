@@ -5,7 +5,7 @@ import dynamic from "next/dynamic";
 import VideoPlayer from "../components/VideoPlayer";
 import videojs from "video.js";
 import NavbarIndex from "../components/Navbar";
-import Sidebar from "../components/Sidebar";
+
 import { HiCheckCircle } from "react-icons/hi";
 import { HandThumbUpIcon, HandThumbDownIcon } from "@heroicons/react/24/solid";
 import { Head } from "next/document";
@@ -51,6 +51,8 @@ const Watch = () => {
 
   console.log(sponsors);
 
+  const router = useRouter();
+
   const getWatchData = () => {
     if (query.v) {
       axios
@@ -94,7 +96,7 @@ const Watch = () => {
   return (
     <div className="font-['Inter']">
       <NavbarIndex />
-      <Sidebar />
+
       {/* <title>Invideo: {watchData?.title}</title> */}
       <div className="pt-16">
         <div className="flex flex-row justify-around p-8 gap-8">
@@ -126,14 +128,17 @@ const Watch = () => {
                     {watchData?.title}
                   </span>
                 </div>
-                <div className="inline-flex gap-2 items-center">
+                <div
+                  className="inline-flex gap-2 items-center group hover:cursor-pointer"
+                  onClick={() => router.push(watchData?.authorUrl)}
+                >
                   <img
                     className="w-8 h-8 rounded-full"
                     src={watchData?.authorThumbnails[2]?.url}
                     alt=""
                   />
                   <div className="flex flex-col">
-                    <span className="font-medium text-orange-800 inline-flex items-center gap-1">
+                    <span className="font-medium text-orange-800 group-hover:text-orange-600 transition-colors duration-200 inline-flex items-center gap-1">
                       {watchData?.author}
                       {pipedData?.uploaderVerified ? (
                         <HiCheckCircle className="h-4 w-4" />
@@ -242,7 +247,8 @@ const Watch = () => {
                             </span>
                             {comment?.isEdited ? (
                               <span className="text-orange-800 font-medium text-sm">
-                                {" "}(edited)
+                                {" "}
+                                (edited)
                               </span>
                             ) : null}
                           </span>

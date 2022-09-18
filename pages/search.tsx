@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import axios from "axios";
 import NavbarIndex from "../components/Navbar";
-import Sidebar from "../components/Sidebar";
+
 import Card from "../components/Card";
 
 const Search = () => {
@@ -31,7 +31,7 @@ const Search = () => {
   return (
     <div className="font-['Inter']">
       <NavbarIndex />
-      <Sidebar />
+
       {searchRes ? (
         <div>
           <div className="pt-16 bg-stone-50 h-full">
