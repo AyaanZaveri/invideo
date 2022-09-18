@@ -34,7 +34,7 @@ const Search = () => {
       <Sidebar />
       {searchRes ? (
         <div>
-          <div className="pl-52 pt-16 bg-stone-50 h-full">
+          <div className="pt-16 bg-stone-50 h-full">
             <div className="rounded-lg flex flex-row flex-wrap justify-center gap-y-8 gap-x-12 py-8 px-2">
               {typeof searchRes !== "undefined" && searchRes.length > 0
                 ? searchRes.map((v: any) => <Card videoResults={v} />)

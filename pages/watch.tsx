@@ -95,7 +95,7 @@ const Watch = () => {
       <NavbarIndex />
       <Sidebar />
       {/* <title>Invideo: {watchData?.title}</title> */}
-      <div className="pl-52 pt-16">
+      <div className="pt-16">
         <div className="flex flex-row justify-around p-8 gap-8">
           <div className="flex flex-col gap-5 w-3/4">
             {watchData?.dashUrl.length > 0 &&
