@@ -246,6 +246,14 @@ const Watch = () => {
                               ),
                             }}
                           />
+                          {comment?.likeCount ? (
+                            <div className="gap-2 inline-flex mt-1">
+                              <span className="text-stone-600 inline-flex items-center gap-1">
+                                {commaNumber(comment?.likeCount)}{" "}
+                                <HandThumbUpIcon className="h-4 w-4" />
+                              </span>
+                            </div>
+                          ) : null}
                         </div>
                       </div>
                     ))
