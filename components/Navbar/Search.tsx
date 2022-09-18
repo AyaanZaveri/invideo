@@ -1,7 +1,8 @@
 import axios from "axios";
 import { useRouter } from "next/router";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { HiOutlineSearch } from "react-icons/hi";
+import onClickOutside from "react-onclickoutside";
 
 const Search = () => {
   const baseUrl = "https://inv.riverside.rocks/api/v1";
@@ -9,6 +10,11 @@ const Search = () => {
   const [search, setSearch] = useState<string>("");
   const [searchSuggestions, setSearchSuggestions] = useState<any>([]);
   const [showSuggestions, setShowSuggestions] = useState<any>(false);
+  const searchSuggestionsRef = useRef<any>();
+
+  const menuRef = useRef(null);
+  const [listening, setListening] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
 
   const getSearchSuggestions = (query: string) => {
     axios
@@ -33,8 +39,16 @@ const Search = () => {
 
   console.log(searchSuggestions);
 
+  useEffect(() => {
+    document.addEventListener("mousedown", (event) => {
+      if (!searchSuggestionsRef?.current?.contains(event.target)) {
+        setShowSuggestions(false);
+      }
+    });
+  }, []);
+
   return (
-    <div className="">
+    <div>
       <div className="flex items-center justify-center flex-col">
         <div className="bg-white/75 backdrop-blur-md w-full h-16 flex items-center justify-center flex-col">
           <div className="relative rounded-md shadow-sm w-6/12">
@@ -51,7 +65,10 @@ const Search = () => {
             </form>
           </div>
         </div>
-        <div className="w-6/12">
+        <div
+          ref={searchSuggestionsRef}
+          className={`w-6/12 ${isOpen ? "hidden" : ""}`}
+        >
           {searchSuggestions?.length > 0 && showSuggestions ? (
             <div className="flex flex-col w-full py-2 gap-1 rounded-lg border border-stone-300/50 select-none bg-white/90 shadow-sm shadow-stone-100 backdrop-blur-lg overflow-hidden">
               {searchSuggestions.map((v: string) => (
