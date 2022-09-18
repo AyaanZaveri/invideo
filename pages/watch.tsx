@@ -134,7 +134,7 @@ const Watch = () => {
                 >
                   <img
                     draggable="false"
-                    className="w-8 h-8 rounded-full"
+                    className="w-8 h-8 rounded-full select-none"
                     src={watchData?.authorThumbnails[2]?.url}
                     alt=""
                   />
@@ -237,7 +237,7 @@ const Watch = () => {
                       <div className="flex flex-row gap-3 items-start">
                         <img
                           draggable="false"
-                          className="w-8 h-8 rounded-full"
+                          className="w-8 h-8 rounded-full select-none"
                           src={comment?.authorThumbnails[0]?.url}
                           alt=""
                         />
@@ -294,7 +294,7 @@ const Watch = () => {
                       >
                         <img
                           draggable="false"
-                          className="w-28 h-min rounded-md transition"
+                          className="w-28 h-min rounded-md transition select-none"
                           src={chapter?.image}
                           alt=""
                         />

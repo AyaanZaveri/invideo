@@ -26,7 +26,7 @@ const RecommendationCard = ({ video }: { video: any }) => {
         <div className="h-full w-28 grid relative">
           <img
             draggable="false"
-            className="w-full object-contain min-h-0 h-full rounded-md transition"
+            className="w-full select-none object-contain min-h-0 h-full rounded-md transition"
             src={video?.videoThumbnails[0]?.url}
           />
           <span className="absolute bottom-0 right-0 m-1 font-semibold text-xs text-orange-600 bg-orange-100/75 backdrop-blur-md py-0.5 px-1.5 w-min text-center rounded">
@@ -39,7 +39,7 @@ const RecommendationCard = ({ video }: { video: any }) => {
         <div className="inline-flex items-center gap-1">
           <img
             draggable="false"
-            className="w-[1.125rem] h-[1.125rem] rounded-full"
+            className="w-[1.125rem] h-[1.125rem] select-none rounded-full"
             src={recommendationData?.authorThumbnails[1].url}
             alt=""
           />

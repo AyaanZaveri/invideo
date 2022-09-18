@@ -36,7 +36,7 @@ const Card = ({ videoResults }: any) => {
             <div className="h-full w-64 grid relative">
               <img
                 draggable="false"
-                className="w-full object-contain min-h-0 h-full rounded-lg transition shadow-lg hover:brightness-90 active:brightness-75 hover:cursor-pointer"
+                className="w-full object-contain select-none min-h-0 h-full rounded-lg transition shadow-lg hover:brightness-90 active:brightness-75 hover:cursor-pointer"
                 src={
                   videoResults?.videoThumbnails?.length > 0
                     ? videoResults?.videoThumbnails[1]?.url.replace(":3000", "")
@@ -63,7 +63,7 @@ const Card = ({ videoResults }: any) => {
         </div>
       ) : videoResults.type == "channel" ? (
         <div
-          className="w-64 hover:cursor-pointer group flex items-center justify-center flex-col gap-3"
+          className="w-64 hover:cursor-pointer select-none group flex items-center justify-center flex-col gap-3"
           onClick={() => router.push(videoResults.authorUrl)}
         >
           <img

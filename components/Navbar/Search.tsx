@@ -51,7 +51,7 @@ const Search = () => {
     <div>
       <div className="flex items-center justify-center flex-col">
         <div className="bg-white/75 backdrop-blur-md relative w-full h-16 flex items-center justify-center flex-row">
-          <img draggable="false" src="/logo.svg" className="p-4 h-16 absolute top-0 left-0" alt="" />
+          <img draggable="false" src="/logo.svg" className="p-4 h-16 select-none absolute top-0 left-0" alt="" />
           <div className="relative rounded-md shadow-sm w-6/12">
             <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
               <HiOutlineSearch className="text-gray-500 sm:text-sm" />
