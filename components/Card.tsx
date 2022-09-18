@@ -35,6 +35,7 @@ const Card = ({ videoResults }: any) => {
           <div className="h-min">
             <div className="h-full w-64 grid relative">
               <img
+                draggable="false"
                 className="w-full object-contain min-h-0 h-full rounded-lg transition shadow-lg hover:brightness-90 active:brightness-75 hover:cursor-pointer"
                 src={
                   videoResults?.videoThumbnails?.length > 0
@@ -66,6 +67,7 @@ const Card = ({ videoResults }: any) => {
           onClick={() => router.push(videoResults.authorUrl)}
         >
           <img
+            draggable="false"
             src={
               videoResults?.authorThumbnails?.length > 0
                 ? "https:" +

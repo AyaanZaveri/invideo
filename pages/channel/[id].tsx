@@ -45,7 +45,8 @@ const Channel = () => {
       <div className="pt-16">
         <div className="flex flex-col">
           <img
-            className="w-full"
+            className="w-full select-none"
+            draggable="false"
             src={channelData?.authorBanners[0]?.url}
             alt=""
           />
@@ -53,7 +54,8 @@ const Channel = () => {
             <div className="flex flex-col w-9/12 items-start gap-3">
               <div className="flex flex-row gap-3 items-center">
                 <img
-                  className="w-20 rounded-full"
+                  className="w-20 rounded-full select-none"
+                  draggable="false"
                   src={
                     channelData?.authorThumbnails[
                       channelData?.authorThumbnails.length - 1
@@ -117,7 +119,7 @@ const Channel = () => {
                 <span className="text-2xl font-bold text-stone-800">
                   Latest Videos
                 </span>
-                <div className="mt-3 flex flex-row flex-wrap gap-y-8 gap-x-12">
+                <div className="mt-3 flex flex-row flex-wrap gap-y-8 gap-x-6">
                   {channelData?.latestVideos?.map((video: any) => (
                     <Card videoResults={video} />
                   ))}

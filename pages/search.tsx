@@ -35,7 +35,7 @@ const Search = () => {
       {searchRes ? (
         <div>
           <div className="pt-16 bg-stone-50 h-full">
-            <div className="rounded-lg flex flex-row flex-wrap justify-center gap-y-8 gap-x-12 py-8 px-2">
+            <div className="rounded-lg flex flex-row flex-wrap justify-center gap-y-8 gap-x-6 py-8 px-6">
               {typeof searchRes !== "undefined" && searchRes.length > 0
                 ? searchRes.map((v: any) => <Card videoResults={v} />)
                 : null}

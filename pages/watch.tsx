@@ -133,6 +133,7 @@ const Watch = () => {
                   onClick={() => router.push(watchData?.authorUrl)}
                 >
                   <img
+                    draggable="false"
                     className="w-8 h-8 rounded-full"
                     src={watchData?.authorThumbnails[2]?.url}
                     alt=""
@@ -235,6 +236,7 @@ const Watch = () => {
                   ? commentsData?.comments.map((comment: any) => (
                       <div className="flex flex-row gap-3 items-start">
                         <img
+                          draggable="false"
                           className="w-8 h-8 rounded-full"
                           src={comment?.authorThumbnails[0]?.url}
                           alt=""
@@ -291,6 +293,7 @@ const Watch = () => {
                         onClick={() => setChapterTime(chapter?.start)}
                       >
                         <img
+                          draggable="false"
                           className="w-28 h-min rounded-md transition"
                           src={chapter?.image}
                           alt=""
