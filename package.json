@@ -6,6 +6,7 @@
     "start": "next start"
   },
   "dependencies": {
+    "@freetube/yt-dash-manifest-generator": "^1.1.1",
     "@heroicons/react": "^2.0.11",
     "@silvermine/videojs-quality-selector": "^1.2.5",
     "axios": "^0.27.2",
@@ -32,7 +33,8 @@
     "videojs-http-source-selector": "^1.1.6",
     "videojs-overlay": "^2.1.4",
     "videojs-vtt-thumbnails": "^0.0.13",
-    "xml-js": "^1.6.11"
+    "xml-js": "^1.6.11",
+    "ytdl-core": "github:absidue/node-ytdl-core#temp-fix-11-08-2022"
   },
   "devDependencies": {
     "@tailwindcss/forms": "^0.5.2",

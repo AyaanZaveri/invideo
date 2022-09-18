@@ -80,10 +80,6 @@ const Watch = () => {
     getSponsors();
   }, [query.v]);
 
-  console.log(pipedData);
-
-  console.log(watchData?.authorThumbnails[3]?.url);
-
   return (
     <div className="font-['Inter']">
       <NavbarIndex />
