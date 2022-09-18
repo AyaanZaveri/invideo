@@ -28,6 +28,7 @@ const Watch = () => {
   const pipedBaseUrl = "https://pa.il.ax";
 
   const [sponsors, setSponsors] = useState<any>([]);
+  const [commentsData, setCommentsData] = useState<any>();
 
   const [chapterTime, setChapterTime] = useState<any>(0);
   const [likeDislikeData, setLikeDislikeData] = useState<any>();
@@ -73,11 +74,20 @@ const Watch = () => {
     }
   };
 
+  const getComments = () => {
+    if (query.v) {
+      axios
+        .get(`${baseUrl}/api/v1/comments/${query.v}`)
+        .then((res) => setCommentsData(res.data));
+    }
+  };
+
   useEffect(() => {
     getWatchData();
     getPiped();
     getLikeDislike();
     getSponsors();
+    getComments();
   }, [query.v]);
 
   return (
@@ -194,7 +204,7 @@ const Watch = () => {
                   </button>
                 </div>
               ) : (
-                <div className="">
+                <div>
                   <div
                     className="mt-3 text-stone-800 line-clamp-6"
                     dangerouslySetInnerHTML={{
@@ -212,6 +222,15 @@ const Watch = () => {
                   </button>
                 </div>
               )}
+              <div className="mt-3 w-full border-t border-stone-200"></div>
+              {/* Comments */}
+              <div className="mt-3">
+                {commentsData
+                  ? commentsData?.comments.map((comment: any) => (
+                      <div>{comment?.content}</div>
+                    ))
+                  : null}
+              </div>
             </div>
           </div>
           <div className="flex flex-col w-1/4 select-none">
