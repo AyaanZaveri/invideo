@@ -199,7 +199,7 @@ const Watch = () => {
                   />
                   <button
                     onClick={() => setShowMore(false)}
-                    className="text-stone-800 hover:text-orange-600 transition-colors duration-200 text-sm"
+                    className="text-orange-800 hover:text-orange-600 transition-colors duration-200 text-sm"
                   >
                     Show Less
                   </button>
@@ -217,7 +217,7 @@ const Watch = () => {
                   />
                   <button
                     onClick={() => setShowMore(true)}
-                    className="text-stone-800 hover:text-orange-600 transition-colors duration-200 text-sm"
+                    className="text-orange-800 hover:text-orange-600 transition-colors duration-200 text-sm"
                   >
                     Show More
                   </button>
@@ -236,7 +236,15 @@ const Watch = () => {
                         />
                         <div className="flex flex-col">
                           <span className="text-stone-800 font-semibold">
-                            {comment?.author}
+                            {comment?.author} ·{" "}
+                            <span className="text-stone-600 font-medium text-sm">
+                              {comment?.publishedText}
+                            </span>
+                            {comment?.isEdited ? (
+                              <span className="text-orange-800 font-medium text-sm">
+                                {" "}(edited)
+                              </span>
+                            ) : null}
                           </span>
                           <div
                             className="text-stone-600"

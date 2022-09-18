@@ -7,14 +7,14 @@ const RecommendationCard = ({ video }: { video: any }) => {
 
   const [recommendationData, setRecommendationData] = useState<any>();
 
-  const getWatchData = () => {
+  const getChannelData = () => {
     axios
       .get(`${baseUrl}/api/v1/channels/${video?.authorId}`)
       .then((res) => setRecommendationData(res.data));
   };
 
   useEffect(() => {
-    getWatchData();
+    getChannelData();
   }, []);
 
   return (
