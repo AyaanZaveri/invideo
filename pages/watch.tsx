@@ -224,10 +224,30 @@ const Watch = () => {
               )}
               <div className="mt-3 w-full border-t border-stone-200"></div>
               {/* Comments */}
-              <div className="mt-3">
+              <div className="mt-3 flex flex-col gap-8">
                 {commentsData
                   ? commentsData?.comments.map((comment: any) => (
-                      <div>{comment?.content}</div>
+                      <div className="flex flex-row gap-3 items-start">
+                        <img
+                          className="w-8 h-8 rounded-full"
+                          src={comment?.authorThumbnails[0]?.url}
+                          alt=""
+                        />
+                        <div className="flex flex-col">
+                          <span className="text-stone-800 font-semibold">
+                            {comment?.author}
+                          </span>
+                          <div
+                            className="text-stone-600"
+                            dangerouslySetInnerHTML={{
+                              __html: comment?.content.replaceAll(
+                                /\n/g,
+                                "<br />"
+                              ),
+                            }}
+                          />
+                        </div>
+                      </div>
                     ))
                   : null}
               </div>
