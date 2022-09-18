@@ -53,7 +53,7 @@ const Search = () => {
         </div>
         <div className="w-6/12">
           {searchSuggestions?.length > 0 && showSuggestions ? (
-            <div className="flex flex-col w-full py-2 gap-1 rounded-lg border border-stone-300/50 select-none bg-white/75 shadow-sm shadow-stone-100 backdrop-blur-lg overflow-hidden">
+            <div className="flex flex-col w-full py-2 gap-1 rounded-lg border border-stone-300/50 select-none bg-white/90 shadow-sm shadow-stone-100 backdrop-blur-lg overflow-hidden">
               {searchSuggestions.map((v: string) => (
                 <div
                   onClick={() => {

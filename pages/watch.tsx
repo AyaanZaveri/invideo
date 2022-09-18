@@ -17,6 +17,7 @@ import {
   BsBadgeCcFill,
   BsBadgeHdFill,
 } from "react-icons/bs";
+import RecommendationCard from "../components/RecommendationCard";
 
 const Watch = () => {
   const { query } = useRouter();
@@ -304,29 +305,7 @@ const Watch = () => {
                 >
                   <div className="flex items-start flex-col w-full h-96 pr-2">
                     {watchData?.recommendedVideos?.map((video: any) => (
-                      <div
-                        className="flex flex-row gap-3 break-words cursor-pointer rounded-lg transition duration-200 hover:bg-stone-200 active:bg-stone-300 px-2 py-2 w-full"
-                        onClick={() =>
-                          (location.href = `/watch?v=${video?.videoId}`)
-                        }
-                      >
-                        <div className="h-min">
-                          <div className="h-full w-28 grid relative">
-                            <img
-                              className="w-full object-contain min-h-0 h-full rounded-md transition"
-                              src={video?.videoThumbnails[0]?.url}
-                            />
-                            <span className="absolute bottom-0 right-0 m-1 font-semibold text-xs text-orange-600 bg-orange-100/75 backdrop-blur-md py-0.5 px-1.5 w-min text-center rounded">
-                              {fancyTimeFormat(video?.lengthSeconds)}
-                            </span>
-                          </div>
-                        </div>
-                        <div className="flex items-center">
-                          <span className="font-bold text-stone-800 text-sm">
-                            {video?.title}
-                          </span>
-                        </div>
-                      </div>
+                      <RecommendationCard video={video} />
                     ))}
                   </div>
                 </div>
