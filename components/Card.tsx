@@ -61,7 +61,10 @@ const Card = ({ videoResults }: any) => {
           </div>
         </div>
       ) : videoResults.type == "channel" ? (
-        <div className="w-64 flex items-center justify-center flex-col gap-3">
+        <div
+          className="w-64 hover:cursor-pointer group flex items-center justify-center flex-col gap-3"
+          onClick={() => router.push(videoResults.authorUrl)}
+        >
           <img
             src={
               videoResults?.authorThumbnails?.length > 0
@@ -72,7 +75,7 @@ const Card = ({ videoResults }: any) => {
                 : "https://dummyimage.com/1280x720/fff/aaa"
             }
             alt=""
-            className="rounded-full w-24 shadow-lg"
+            className="rounded-full w-24 shadow-lg group-hover:brightness-90 group-active:brightness-75 transition-all duration-200"
           />
           <div className="flex flex-col items-center justify-center">
             <span className="font-semibold text-stone-900">

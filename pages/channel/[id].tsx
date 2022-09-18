@@ -7,6 +7,7 @@ import NavbarIndex from "../../components/Navbar";
 import Sidebar from "../../components/Sidebar";
 import { commaNumber } from "../../utils/commaNumber";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import Card from "../../components/Card";
 
 const Channel = () => {
   const router = useRouter();
@@ -16,6 +17,7 @@ const Channel = () => {
 
   const [channelData, setChannelData] = useState<any>();
   const [pipedData, setPipedData] = useState<any>();
+  const [showMore, setShowMore] = useState<boolean>(false);
 
   const { query } = router;
   const id = query.id;
@@ -48,41 +50,90 @@ const Channel = () => {
             src={channelData?.authorBanners[0]?.url}
             alt=""
           />
-          <div className="flex flex-row justify-between p-8 items-center">
-            <div className="flex flex-row items-center gap-3">
-              <img
-                className="w-20 rounded-full"
-                src={
-                  channelData?.authorThumbnails[
-                    channelData?.authorThumbnails.length - 1
-                  ]?.url
-                }
-                alt=""
-              />
-              <div className="flex flex-col">
-                <span className="font-bold text-stone-800 inline-flex items-center gap-1 text-2xl">
-                  {channelData?.author}
-                  {pipedData?.verified ? (
-                    <HiCheckCircle className="h-5 w-5" />
-                  ) : null}
+          <div className="flex flex-row justify-between p-8 items-start">
+            <div className="flex flex-col w-9/12 items-start gap-3">
+              <div className="flex flex-row gap-3 items-center">
+                <img
+                  className="w-20 rounded-full"
+                  src={
+                    channelData?.authorThumbnails[
+                      channelData?.authorThumbnails.length - 1
+                    ]?.url
+                  }
+                  alt=""
+                />
+                <div className="flex flex-col">
+                  <span className="font-bold text-stone-800 inline-flex items-center gap-1 text-2xl">
+                    {channelData?.author}
+                    {pipedData?.verified ? (
+                      <HiCheckCircle className="h-5 w-5" />
+                    ) : null}
+                  </span>
+                  <span className="text-orange-600 font-medium text inline-flex items-center gap-1">
+                    <span className="font-bold">
+                      {commaNumber(channelData?.subCount)}
+                    </span>{" "}
+                    Subscribers
+                  </span>
+                </div>
+              </div>
+              {showMore ? (
+                <div>
+                  <div
+                    className="mt-3 text-stone-800"
+                    dangerouslySetInnerHTML={{
+                      __html: channelData?.descriptionHtml.replaceAll(
+                        /\n/g,
+                        "<br />"
+                      ),
+                    }}
+                  />
+                  <button
+                    onClick={() => setShowMore(false)}
+                    className="text-orange-800 hover:text-orange-600 transition-colors duration-200 text-sm"
+                  >
+                    Show Less
+                  </button>
+                </div>
+              ) : (
+                <div>
+                  <div
+                    className="mt-3 text-stone-800 line-clamp-3"
+                    dangerouslySetInnerHTML={{
+                      __html: channelData?.descriptionHtml.replaceAll(
+                        /\n/g,
+                        "<br />"
+                      ),
+                    }}
+                  />
+                  <button
+                    onClick={() => setShowMore(true)}
+                    className="text-orange-800 hover:text-orange-600 transition-colors duration-200 text-sm"
+                  >
+                    Show More
+                  </button>
+                </div>
+              )}
+              <div className="mt-3">
+                <span className="text-2xl font-bold text-stone-800">
+                  Latest Videos
                 </span>
-                <span className="text-orange-600 font-medium text inline-flex items-center gap-1">
-                  <span className="font-bold">
-                    {commaNumber(channelData?.subCount)}
-                  </span>{" "}
-                  Subscribers
-                </span>
+                <div className="mt-3 flex flex-row flex-wrap gap-y-8 gap-x-12">
+                  {channelData?.latestVideos?.map((video: any) => (
+                    <Card videoResults={video} />
+                  ))}
+                </div>
               </div>
             </div>
-            <div className="flex flex-col gap-1">
-              <span className="text-stone-800 font-medium text inline-flex items-center gap-1">
+            <div className="flex flex-col gap-1 w-3/12 items-end">
+              <span className="text-stone-800 font-medium inline-flex items-center gap-1">
                 <span className="font-bold">
                   {commaNumber(channelData?.totalViews)}
                 </span>{" "}
                 Total Views
               </span>
               {channelData?.joined ? (
-                <span className="text-stone-800 font-medium text inline-flex items-center gap-1">
+                <span className="text-stone-800 font-medium inline-flex items-center gap-1">
                   Joined on
                   <span className="font-bold">
                     {DateTime.fromSeconds(channelData?.joined).toFormat(
@@ -92,10 +143,9 @@ const Channel = () => {
                 </span>
               ) : null}
               {channelData?.isFamilyFriendly ? (
-                <div className="text-orange-600 inline-flex gap-2 items-center">
-                  <span className="font-medium text inline-flex items-center gap-1">
-                    Family Friendly
-                  </span>
+                <div className="text-orange-600 font-medium inline-flex items-center gap-1">
+                  <span className="font-bold">Family Friendly</span>
+                  Content
                 </div>
               ) : null}
             </div>
