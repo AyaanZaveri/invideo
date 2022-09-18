@@ -176,25 +176,41 @@ const Watch = () => {
             </div>
             <div className="w-full border-t border-stone-200">
               {showMore ? (
-                <div
-                  className="mt-3 text-stone-800"
-                  dangerouslySetInnerHTML={{
-                    __html: watchData?.descriptionHtml.replaceAll(
-                      /\n/g,
-                      "<br />"
-                    ),
-                  }}
-                />
+                <div>
+                  <div
+                    className="mt-3 text-stone-800"
+                    dangerouslySetInnerHTML={{
+                      __html: watchData?.descriptionHtml.replaceAll(
+                        /\n/g,
+                        "<br />"
+                      ),
+                    }}
+                  />
+                  <button
+                    onClick={() => setShowMore(false)}
+                    className="text-stone-800 hover:text-orange-600 transition-colors duration-200 text-sm"
+                  >
+                    Show Less
+                  </button>
+                </div>
               ) : (
-                <div
-                  className="mt-3 text-stone-800"
-                  dangerouslySetInnerHTML={{
-                    __html: watchData?.descriptionHtml.replaceAll(
-                      /\n/g,
-                      "<br />"
-                    ),
-                  }}
-                />
+                <div className="">
+                  <div
+                    className="mt-3 text-stone-800 line-clamp-6"
+                    dangerouslySetInnerHTML={{
+                      __html: watchData?.descriptionHtml.replaceAll(
+                        /\n/g,
+                        "<br />"
+                      ),
+                    }}
+                  />
+                  <button
+                    onClick={() => setShowMore(true)}
+                    className="text-stone-800 hover:text-orange-600 transition-colors duration-200 text-sm"
+                  >
+                    Show More
+                  </button>
+                </div>
               )}
             </div>
           </div>
