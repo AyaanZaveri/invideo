@@ -5,12 +5,17 @@ import { HiOutlineSearch, HiCog } from "react-icons/hi";
 import onClickOutside from "react-onclickoutside";
 
 const Search = () => {
-  const baseUrl = "https://inv.riverside.rocks/api/v1";
-
   const [search, setSearch] = useState<string>("");
   const [searchSuggestions, setSearchSuggestions] = useState<any>([]);
   const [showSuggestions, setShowSuggestions] = useState<any>(false);
   const searchSuggestionsRef = useRef<any>();
+  const [invInstance, setInvInstance] = useState<any>(
+    typeof window !== "undefined"
+      ? localStorage?.getItem("invidiousInstance")
+      : null
+  );
+
+  // getItem(keyName)
 
   const menuRef = useRef(null);
   const [listening, setListening] = useState(false);
@@ -18,7 +23,7 @@ const Search = () => {
 
   const getSearchSuggestions = (query: string) => {
     axios
-      .get(`${baseUrl}/search/suggestions?q=${query}`)
+      .get(`${invInstance}/search/suggestions?q=${query}`)
       .then((res) => setSearchSuggestions(res.data?.suggestions));
   };
 
@@ -47,6 +52,14 @@ const Search = () => {
     });
   }, []);
 
+  useEffect(() => {
+    if (invInstance !== undefined && invInstance?.length > 2) {
+      localStorage?.setItem("invidiousInstance", invInstance);
+    } else {
+      localStorage?.setItem("invidiousInstance", "https://inv.riverside.rocks");
+    }
+  }, [invInstance]);
+
   return (
     <div>
       <div className="flex items-center justify-center flex-col">
@@ -71,7 +84,10 @@ const Search = () => {
               />
             </form>
           </div>
-          <button className="absolute right-0 m-4 p-2 focus:ring-orange-500/50 active:bg-stone-50 focus:ring-2 items-center justify-center flex focus:border-orange-500 border text-stone-600 border-stone-300 rounded-md shadow-sm transition">
+          <button
+            onClick={() => setInvInstance(prompt("Invidious Instance URL:"))}
+            className="absolute right-0 m-4 p-2 focus:ring-orange-500/50 active:bg-stone-50 focus:ring-2 items-center justify-center flex focus:border-orange-500 border text-stone-600 border-stone-300 rounded-md shadow-sm transition"
+          >
             <HiCog />
           </button>
         </div>
