@@ -141,7 +141,7 @@ const Watch = () => {
                     alt=""
                   />
                   <div className="flex flex-col">
-                    <span className="font-medium text-orange-800 group-hover:text-orange-600 transition-colors duration-200 inline-flex items-center gap-1">
+                    <span className="font-medium text-orange-800 group-hover:text-orange-600 transition-colors duration-300 inline-flex items-center gap-1">
                       {watchData?.author}
                       {pipedData?.uploaderVerified ? (
                         <HiCheckCircle className="h-4 w-4" />
@@ -207,7 +207,7 @@ const Watch = () => {
                   />
                   <button
                     onClick={() => setShowMore(false)}
-                    className="text-orange-800 hover:text-orange-600 transition-colors duration-200 text-sm"
+                    className="text-orange-800 hover:text-orange-600 transition-colors duration-300 text-sm"
                   >
                     Show Less
                   </button>
@@ -225,7 +225,7 @@ const Watch = () => {
                   />
                   <button
                     onClick={() => setShowMore(true)}
-                    className="text-orange-800 hover:text-orange-600 transition-colors duration-200 text-sm"
+                    className="text-orange-800 hover:text-orange-600 transition-colors duration-300 text-sm"
                   >
                     Show More
                   </button>
@@ -291,7 +291,7 @@ const Watch = () => {
                   <div className="flex items-start flex-col w-full h-96 overflow-y-scroll scrollbar pr-2 bg-stone-100 p-3 rounded-lg">
                     {pipedData?.chapters.map((chapter: any) => (
                       <div
-                        className="flex flex-row gap-3 break-words cursor-pointer rounded-lg transition duration-200 hover:bg-stone-200 active:bg-stone-300 px-2 py-2 w-full"
+                        className="flex flex-row gap-3 break-words cursor-pointer rounded-lg transition duration-300 hover:bg-stone-200 active:bg-stone-300 px-2 py-2 w-full"
                         onClick={() => setChapterTime(chapter?.start)}
                       >
                         <img

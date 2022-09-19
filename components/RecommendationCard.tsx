@@ -21,7 +21,7 @@ const RecommendationCard = ({ video }: { video: any }) => {
   }, []);
 
   return (
-    <div className="flex flex-row gap-3 break-words cursor-pointer rounded-lg transition duration-200 hover:bg-stone-200 active:bg-stone-300 px-2 py-2 w-full">
+    <div className="flex flex-row gap-3 break-words cursor-pointer rounded-lg transition duration-300 hover:bg-stone-200 active:bg-stone-300 px-2 py-2 w-full">
       <div className="h-min">
         <div className="h-full w-28 grid relative" onClick={() => (location.href = `/watch?v=${video?.videoId}`)}>
           <img
@@ -49,7 +49,7 @@ const RecommendationCard = ({ video }: { video: any }) => {
             alt=""
           />
           <span
-            className="font-medium text-orange-800 text-sm hover:text-orange-600 transition duration-200"
+            className="font-medium text-orange-800 text-sm hover:text-orange-600 transition duration-300"
             onClick={() => (location.href = video?.authorUrl)}
           >
             {video?.author}

@@ -93,7 +93,7 @@ const Channel = () => {
                   />
                   <button
                     onClick={() => setShowMore(false)}
-                    className="text-orange-800 hover:text-orange-600 transition-colors duration-200 text-sm"
+                    className="text-orange-800 hover:text-orange-600 transition-colors duration-300 text-sm"
                   >
                     Show Less
                   </button>
@@ -111,7 +111,7 @@ const Channel = () => {
                   />
                   <button
                     onClick={() => setShowMore(true)}
-                    className="text-orange-800 hover:text-orange-600 transition-colors duration-200 text-sm"
+                    className="text-orange-800 hover:text-orange-600 transition-colors duration-300 text-sm"
                   >
                     Show More
                   </button>

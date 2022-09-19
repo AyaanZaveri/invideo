@@ -77,7 +77,7 @@ const Card = ({ videoResults }: any) => {
                 : "https://dummyimage.com/1280x720/fff/aaa"
             }
             alt=""
-            className="rounded-full w-24 shadow-lg group-hover:brightness-90 group-active:brightness-75 transition-all duration-200"
+            className="rounded-full w-24 shadow-lg group-hover:brightness-90 group-active:brightness-75 transition-all duration-300"
           />
           <div className="flex flex-col items-center justify-center">
             <span className="font-semibold text-stone-900">
