@@ -3,7 +3,9 @@ import React, { useEffect, useState } from "react";
 import { fancyTimeFormat } from "../utils/fancyTimeFormat";
 
 const RecommendationCard = ({ video }: { video: any }) => {
-  const baseUrl = "https://inv.riverside.rocks";
+  const baseUrl = typeof window !== "undefined"
+      ? localStorage?.getItem("invidiousInstance")
+      : null;
 
   const [recommendationData, setRecommendationData] = useState<any>();
 

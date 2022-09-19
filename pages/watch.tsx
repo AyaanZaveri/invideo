@@ -24,7 +24,9 @@ const Watch = () => {
   const [watchData, setWatchData] = useState<any>();
   const [pipedData, setPipedData] = useState<any>();
   const [showMore, setShowMore] = useState<boolean>(false);
-  const baseUrl = "https://inv.riverside.rocks";
+  const baseUrl = typeof window !== "undefined"
+      ? localStorage?.getItem("invidiousInstance")
+      : null;
   // Using Piped to get uploaderVerified and Chapters
   const pipedBaseUrl = "https://pa.il.ax";
 

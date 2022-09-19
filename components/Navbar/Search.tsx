@@ -85,7 +85,9 @@ const Search = () => {
             </form>
           </div>
           <button
-            onClick={() => setInvInstance(prompt("Invidious Instance URL:"))}
+            onClick={() =>
+              setInvInstance(prompt(`Invidious Instance URL: ${localStorage?.getItem("invidiousInstance")}`))
+            }
             className="absolute right-0 m-4 p-2 focus:ring-orange-500/50 active:bg-stone-50 focus:ring-2 items-center justify-center flex focus:border-orange-500 border text-stone-600 border-stone-300 rounded-md shadow-sm transition"
           >
             <HiCog />

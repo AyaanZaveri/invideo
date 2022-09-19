@@ -11,7 +11,9 @@ import Card from "../../components/Card";
 const Channel = () => {
   const router = useRouter();
 
-  const baseUrl = "https://inv.riverside.rocks";
+  const baseUrl = typeof window !== "undefined"
+      ? localStorage?.getItem("invidiousInstance")
+      : null;
   const pipedBaseUrl = "https://pa.il.ax";
 
   const [channelData, setChannelData] = useState<any>();
