@@ -23,7 +23,11 @@ const Search = () => {
 
   const getSearchSuggestions = (query: string) => {
     axios
-      .get(`${invInstance}/search/suggestions?q=${query}`)
+      .get(
+        `${localStorage?.getItem(
+          "invidiousInstance"
+        )}/api/v1/search/suggestions?q=${query}`
+      )
       .then((res) => setSearchSuggestions(res.data?.suggestions));
   };
 
@@ -60,6 +64,8 @@ const Search = () => {
     }
   }, [invInstance]);
 
+  console.log(searchSuggestions);
+
   return (
     <div>
       <div className="flex items-center justify-center flex-col">
@@ -86,7 +92,13 @@ const Search = () => {
           </div>
           <button
             onClick={() =>
-              setInvInstance(prompt(`Invidious Instance URL: ${localStorage?.getItem("invidiousInstance")}`))
+              setInvInstance(
+                prompt(
+                  `Invidious Instance URL: ${localStorage?.getItem(
+                    "invidiousInstance"
+                  )}`
+                )
+              )
             }
             className="absolute right-0 m-4 p-2 focus:ring-orange-500/50 active:bg-stone-50 focus:ring-2 items-center justify-center flex focus:border-orange-500 border text-stone-600 border-stone-300 rounded-md shadow-sm transition"
           >
@@ -95,7 +107,7 @@ const Search = () => {
         </div>
         <div
           ref={searchSuggestionsRef}
-          className={`w-6/12 ${isOpen ? "hidden" : ""}`}
+          className={`w-6/12 ${isOpen ? "" : ""}`}
         >
           {searchSuggestions?.length > 0 && showSuggestions ? (
             <div className="flex flex-col w-full py-2 gap-1 rounded-lg border border-stone-300/50 select-none bg-white/90 shadow-sm shadow-stone-100 backdrop-blur-lg overflow-hidden">

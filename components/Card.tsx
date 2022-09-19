@@ -29,14 +29,14 @@ const Card = ({ videoResults }: any) => {
     <div>
       {videoResults?.type == "video" || videoResults?.type == "shortVideo" ? (
         <div
-          className="w-64 flex flex-col gap-2"
+          className="w-64 flex flex-col gap-2 hover:cursor-pointer"
           onClick={() => router.push(`/watch?v=${videoResults?.videoId}`)}
         >
           <div className="h-min">
             <div className="h-full w-64 grid relative">
               <img
                 draggable="false"
-                className="w-full object-contain select-none min-h-0 h-full rounded-lg transition shadow-lg hover:brightness-90 active:brightness-75 hover:cursor-pointer"
+                className="w-full object-contain select-none min-h-0 h-full rounded-lg transition duration-300 shadow-lg hover:brightness-90 active:brightness-75"
                 src={
                   videoResults?.videoThumbnails?.length > 0
                     ? videoResults?.videoThumbnails[1]?.url.replace(":3000", "")
@@ -50,7 +50,10 @@ const Card = ({ videoResults }: any) => {
           </div>
           <div className="flex flex-col gap-0.5">
             <span className="text-sm font-bold">{videoResults?.title}</span>
-            <span className="text-xs font-semibold text-orange-500">
+            <span
+              className="text-xs font-semibold text-orange-500"
+              onClick={() => (location.href = videoResults?.authorUrl)}
+            >
               {videoResults?.author}
             </span>
             <div className="flex flex-row">
