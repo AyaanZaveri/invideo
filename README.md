@@ -7,7 +7,12 @@
 Invideo
 </h1>
 
-**Invideo** is an alternative YouTube frontend.
+[**Invideo**](https://invideo.vercel.app/) is an alternative YouTube frontend.
 
 ## Tools & Tech
-[**Invideo**](https://invideo.vercel.app/) uses Next.js, TypeScript, and TailwindCSS.
+It's built with Next.js, TypeScript, and TailwindCSS.
+
+## Where does Invideo get the data from?
+- Invideo primarily uses the [Invidious](https://github.com/iv-org/invidious) API to get it's data. 
+- It uses the [Piped](https://github.com/TeamPiped/Piped) API to get **chapter** data.
+- It uses the [Return YouTube Dislike](https://github.com/Anarios/return-youtube-dislike) API for **like** and **dislike** data.
