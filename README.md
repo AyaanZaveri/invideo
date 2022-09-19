@@ -10,7 +10,7 @@ Invideo
 [**Invideo**](https://invideo.vercel.app/) is an alternative YouTube frontend.
 
 ## Tools & Tech
-It's built with Next.js, TypeScript, and TailwindCSS.
+It's built with **Next.js**, **TypeScript**, and **TailwindCSS**.
 
 ## Where does Invideo get the data from?
 - Invideo primarily uses the [Invidious](https://github.com/iv-org/invidious) API to get it's data. 
