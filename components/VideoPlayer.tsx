@@ -44,7 +44,7 @@ const VideoPlayer = ({
   const [player, setPlayer] = useState<any>();
 
   var videoOptions = {
-    autoplay: false,
+    autoplay: true,
     plugins: {
       httpSourceSelector: {
         default: "high",

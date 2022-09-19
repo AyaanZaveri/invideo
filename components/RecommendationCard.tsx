@@ -23,7 +23,10 @@ const RecommendationCard = ({ video }: { video: any }) => {
   return (
     <div className="flex flex-row gap-3 break-words cursor-pointer rounded-lg transition duration-300 hover:bg-stone-200 active:bg-stone-300 px-2 py-2 w-full">
       <div className="h-min">
-        <div className="h-full w-28 grid relative" onClick={() => (location.href = `/watch?v=${video?.videoId}`)}>
+        <div
+          className="h-full w-28 grid relative"
+          onClick={() => (location.href = `/watch?v=${video?.videoId}`)}
+        >
           <img
             draggable="false"
             className="w-full select-none object-contain min-h-0 h-full rounded-md transition"
