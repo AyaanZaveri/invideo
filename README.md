@@ -36,3 +36,7 @@ Channel
 </h3>
 
 ![Screen Shot 2022-09-18 at 10 15 18 PM](https://user-images.githubusercontent.com/63752541/190940108-fbaf2767-d5cf-44a3-81c0-c31f219f427a.png)
+
+## Donate to the project
+Love the project? Donate to support the developers.
+ETH: 0x99c0031651D08d06bE074168Fb6d2677cfB56f5b
