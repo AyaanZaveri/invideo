@@ -46,7 +46,6 @@ const Search = () => {
     }
   }, [search]);
 
-  console.log(searchSuggestions);
 
   useEffect(() => {
     document.addEventListener("mousedown", (event) => {
@@ -64,7 +63,6 @@ const Search = () => {
     }
   }, [invInstance]);
 
-  console.log(searchSuggestions);
 
   return (
     <div>

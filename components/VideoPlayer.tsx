@@ -43,8 +43,6 @@ const VideoPlayer = ({
   const videoRef = useRef<any>(null);
   const [player, setPlayer] = useState<any>();
 
-  console.log(sponsors);
-
   var videoOptions = {
     autoplay: false,
     plugins: {

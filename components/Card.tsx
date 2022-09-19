@@ -21,8 +21,6 @@ const Card = ({ videoResults }: any) => {
   //   }
   // }, []);
 
-  console.log(videoResults);
-
   const router = useRouter();
 
   return (

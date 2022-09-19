@@ -24,7 +24,8 @@ const Watch = () => {
   const [watchData, setWatchData] = useState<any>();
   const [pipedData, setPipedData] = useState<any>();
   const [showMore, setShowMore] = useState<boolean>(false);
-  const baseUrl = typeof window !== "undefined"
+  const baseUrl =
+    typeof window !== "undefined"
       ? localStorage?.getItem("invidiousInstance")
       : null;
   // Using Piped to get uploaderVerified and Chapters
@@ -50,8 +51,6 @@ const Watch = () => {
         )
       );
   };
-
-  console.log(sponsors);
 
   const router = useRouter();
 
@@ -101,237 +100,242 @@ const Watch = () => {
 
       {/* <title>Invideo: {watchData?.title}</title> */}
       <div className="pt-16">
-        <div className="flex flex-row justify-around p-8 gap-8">
-          <div className="flex flex-col gap-5 w-3/4">
-            {watchData?.dashUrl.length > 0 &&
-            watchData?.dashUrl !== undefined ? (
-              <VideoPlayer
-                width={1280}
-                height={720}
-                source={
-                  watchData?.dashUrl.replace("http://", "https://") +
-                  "?local=true"
-                }
-                captions={watchData?.captions}
-                storyboard={
-                  baseUrl +
-                  watchData?.storyboards[watchData?.storyboards.length - 1]?.url
-                }
-                poster={watchData?.videoThumbnails[0]?.url}
-                baseUrl={baseUrl as string}
-                sponsors={sponsors}
-                chapterTime={chapterTime}
-              />
-            ) : null}
-            <div className="flex flex-row justify-between">
-              <div className="flex flex-col gap-1.5">
-                <div className="inline-flex gap-2 items-center">
-                  <span className="text-2xl font-bold text-stone-800">
-                    {watchData?.title}
-                  </span>
-                </div>
-                <div
-                  className="inline-flex gap-2 items-center group hover:cursor-pointer"
-                  onClick={() => router.push(watchData?.authorUrl)}
-                >
-                  <img
-                    draggable="false"
-                    className="w-8 h-8 rounded-full select-none"
-                    src={watchData?.authorThumbnails[2]?.url}
-                    alt=""
-                  />
-                  <div className="flex flex-col">
-                    <span className="font-medium text-orange-800 group-hover:text-orange-600 transition-colors duration-300 inline-flex items-center gap-1">
-                      {watchData?.author}
-                      {pipedData?.uploaderVerified ? (
-                        <HiCheckCircle className="h-4 w-4" />
-                      ) : null}
-                    </span>
-                    <span className="text-stone-600 text-xs inline-flex items-center gap-1">
-                      {watchData?.subCountText} Subscribers
+        {watchData ? (
+          <div className="flex flex-row justify-around p-8 gap-8">
+            <div className="flex flex-col gap-5 w-3/4">
+              {watchData?.dashUrl.length > 0 &&
+              watchData?.dashUrl !== undefined ? (
+                <VideoPlayer
+                  width={1280}
+                  height={720}
+                  source={
+                    watchData?.dashUrl.replace("http://", "https://") +
+                    "?local=true"
+                  }
+                  captions={watchData?.captions}
+                  storyboard={
+                    baseUrl +
+                    watchData?.storyboards[watchData?.storyboards.length - 1]
+                      ?.url
+                  }
+                  poster={watchData?.videoThumbnails[0]?.url}
+                  baseUrl={baseUrl as string}
+                  sponsors={sponsors}
+                  chapterTime={chapterTime}
+                />
+              ) : null}
+              <div className="flex flex-row justify-between">
+                <div className="flex flex-col gap-1.5">
+                  <div className="inline-flex gap-2 items-center">
+                    <span className="text-2xl font-bold text-stone-800">
+                      {watchData?.title}
                     </span>
                   </div>
+                  <div
+                    className="inline-flex gap-2 items-center group hover:cursor-pointer"
+                    onClick={() => router.push(watchData?.authorUrl)}
+                  >
+                    <img
+                      draggable="false"
+                      className="w-8 h-8 rounded-full select-none"
+                      src={watchData?.authorThumbnails[2]?.url}
+                      alt=""
+                    />
+                    <div className="flex flex-col">
+                      <span className="font-medium text-orange-800 group-hover:text-orange-600 transition-colors duration-300 inline-flex items-center gap-1">
+                        {watchData?.author}
+                        {pipedData?.uploaderVerified ? (
+                          <HiCheckCircle className="h-4 w-4" />
+                        ) : null}
+                      </span>
+                      <span className="text-stone-600 text-xs inline-flex items-center gap-1">
+                        {watchData?.subCountText} Subscribers
+                      </span>
+                    </div>
+                  </div>
+                </div>
+                <div className="flex flex-col items-end text-end">
+                  {watchData?.publishedText ? (
+                    <span className="text-orange-800">
+                      Published · <b>{watchData?.publishedText}</b>
+                    </span>
+                  ) : null}
+                  {watchData?.viewCount ? (
+                    <span className="text-stone-800">
+                      Views · <b>{commaNumber(watchData?.viewCount)} </b>
+                    </span>
+                  ) : null}
+                  {likeDislikeData?.likes & likeDislikeData?.dislikes ? (
+                    <div>
+                      <div className="gap-2 inline-flex">
+                        <span className="text-stone-600 inline-flex items-center gap-1">
+                          {commaNumber(likeDislikeData?.likes)}{" "}
+                          <HandThumbUpIcon className="h-4 w-4" />
+                        </span>
+                        <span className="text-stone-600 inline-flex items-center gap-1">
+                          {commaNumber(likeDislikeData?.dislikes)}{" "}
+                          <HandThumbDownIcon className="h-4 w-4" />
+                        </span>
+                      </div>
+                      <div className="bg-orange-200 w-full rounded-full">
+                        <div
+                          className="h-0.5 mt-0.5 z-30 bg-orange-500 rounded-full"
+                          style={{
+                            width:
+                              (likeDislikeData?.likes /
+                                (likeDislikeData?.dislikes +
+                                  likeDislikeData?.likes)) *
+                                100 +
+                              "%",
+                          }}
+                        ></div>
+                      </div>
+                    </div>
+                  ) : null}
                 </div>
               </div>
-              <div className="flex flex-col items-end text-end">
-                {watchData?.publishedText ? (
-                  <span className="text-orange-800">
-                    Published · <b>{watchData?.publishedText}</b>
-                  </span>
-                ) : null}
-                {watchData?.viewCount ? (
-                  <span className="text-stone-800">
-                    Views · <b>{commaNumber(watchData?.viewCount)} </b>
-                  </span>
-                ) : null}
-                {likeDislikeData?.likes & likeDislikeData?.dislikes ? (
+              <div className="w-full border-t border-stone-200">
+                {showMore ? (
                   <div>
-                    <div className="gap-2 inline-flex">
-                      <span className="text-stone-600 inline-flex items-center gap-1">
-                        {commaNumber(likeDislikeData?.likes)}{" "}
-                        <HandThumbUpIcon className="h-4 w-4" />
-                      </span>
-                      <span className="text-stone-600 inline-flex items-center gap-1">
-                        {commaNumber(likeDislikeData?.dislikes)}{" "}
-                        <HandThumbDownIcon className="h-4 w-4" />
-                      </span>
-                    </div>
-                    <div className="bg-orange-200 w-full rounded-full">
-                      <div
-                        className="h-0.5 mt-0.5 z-30 bg-orange-500 rounded-full"
-                        style={{
-                          width:
-                            (likeDislikeData?.likes /
-                              (likeDislikeData?.dislikes +
-                                likeDislikeData?.likes)) *
-                              100 +
-                            "%",
-                        }}
-                      ></div>
+                    <div
+                      className="mt-3 text-stone-800"
+                      dangerouslySetInnerHTML={{
+                        __html: watchData?.descriptionHtml.replaceAll(
+                          /\n/g,
+                          "<br />"
+                        ),
+                      }}
+                    />
+                    <button
+                      onClick={() => setShowMore(false)}
+                      className="text-orange-800 hover:text-orange-600 transition-colors duration-300 text-sm"
+                    >
+                      Show Less
+                    </button>
+                  </div>
+                ) : (
+                  <div>
+                    <div
+                      className="mt-3 text-stone-800 line-clamp-6"
+                      dangerouslySetInnerHTML={{
+                        __html: watchData?.descriptionHtml.replaceAll(
+                          /\n/g,
+                          "<br />"
+                        ),
+                      }}
+                    />
+                    <button
+                      onClick={() => setShowMore(true)}
+                      className="text-orange-800 hover:text-orange-600 transition-colors duration-300 text-sm"
+                    >
+                      Show More
+                    </button>
+                  </div>
+                )}
+                <div className="mt-3 w-full border-t border-stone-200"></div>
+                {/* Comments */}
+                <div className="mt-6 flex flex-col gap-8">
+                  {commentsData
+                    ? commentsData?.comments.map((comment: any) => (
+                        <div className="flex flex-row gap-3 items-start">
+                          <img
+                            draggable="false"
+                            className="w-8 h-8 rounded-full select-none"
+                            src={comment?.authorThumbnails[0]?.url}
+                            alt=""
+                          />
+                          <div className="flex flex-col">
+                            <span className="text-stone-800 font-semibold">
+                              {comment?.author} ·{" "}
+                              <span className="text-stone-600 font-medium text-sm">
+                                {comment?.publishedText}
+                              </span>
+                              {comment?.isEdited ? (
+                                <span className="text-orange-800 font-medium text-sm">
+                                  {" "}
+                                  (edited)
+                                </span>
+                              ) : null}
+                            </span>
+                            <div
+                              className="text-stone-600"
+                              dangerouslySetInnerHTML={{
+                                __html: comment?.content.replaceAll(
+                                  /\n/g,
+                                  "<br />"
+                                ),
+                              }}
+                            />
+                            {comment?.likeCount ? (
+                              <div className="gap-2 inline-flex mt-1">
+                                <span className="text-orange-800 inline-flex items-center gap-1">
+                                  {commaNumber(comment?.likeCount)}{" "}
+                                  <HandThumbUpIcon className="h-4 w-4" />
+                                </span>
+                              </div>
+                            ) : null}
+                          </div>
+                        </div>
+                      ))
+                    : null}
+                </div>
+              </div>
+            </div>
+            <div className="flex flex-col w-1/4 select-none">
+              <div className="flex flex-col items-center">
+                {/* Chapters */}
+                {pipedData?.chapters.length > 0 ? (
+                  <div className="flex flex-col gap-3 w-full">
+                    <span className="text-xl font-bold text-stone-800">
+                      Chapters
+                    </span>
+                    <div className="flex items-start flex-col w-full h-96 overflow-y-scroll scrollbar pr-2 bg-stone-100 p-3 rounded-lg">
+                      {pipedData?.chapters.map((chapter: any) => (
+                        <div
+                          className="flex flex-row gap-3 break-words cursor-pointer rounded-lg transition duration-300 hover:bg-stone-200 active:bg-stone-300 px-2 py-2 w-full"
+                          onClick={() => setChapterTime(chapter?.start)}
+                        >
+                          <img
+                            draggable="false"
+                            className="w-28 h-min rounded-md transition select-none"
+                            src={chapter?.image}
+                            alt=""
+                          />
+                          <div className="flex flex-col gap-1 justify-center">
+                            <span className="font-bold text-stone-800 text-sm">
+                              {chapter?.title}
+                            </span>
+                            <span className="font-semibold text-xs text-orange-600 bg-orange-100 py-0.5 px-1.5 w-min text-center rounded">
+                              {fancyTimeFormat(chapter?.start)}
+                            </span>
+                          </div>
+                        </div>
+                      ))}
                     </div>
                   </div>
                 ) : null}
               </div>
-            </div>
-            <div className="w-full border-t border-stone-200">
-              {showMore ? (
-                <div>
-                  <div
-                    className="mt-3 text-stone-800"
-                    dangerouslySetInnerHTML={{
-                      __html: watchData?.descriptionHtml.replaceAll(
-                        /\n/g,
-                        "<br />"
-                      ),
-                    }}
-                  />
-                  <button
-                    onClick={() => setShowMore(false)}
-                    className="text-orange-800 hover:text-orange-600 transition-colors duration-300 text-sm"
-                  >
-                    Show Less
-                  </button>
-                </div>
-              ) : (
-                <div>
-                  <div
-                    className="mt-3 text-stone-800 line-clamp-6"
-                    dangerouslySetInnerHTML={{
-                      __html: watchData?.descriptionHtml.replaceAll(
-                        /\n/g,
-                        "<br />"
-                      ),
-                    }}
-                  />
-                  <button
-                    onClick={() => setShowMore(true)}
-                    className="text-orange-800 hover:text-orange-600 transition-colors duration-300 text-sm"
-                  >
-                    Show More
-                  </button>
-                </div>
-              )}
-              <div className="mt-3 w-full border-t border-stone-200"></div>
-              {/* Comments */}
-              <div className="mt-6 flex flex-col gap-8">
-                {commentsData
-                  ? commentsData?.comments.map((comment: any) => (
-                      <div className="flex flex-row gap-3 items-start">
-                        <img
-                          draggable="false"
-                          className="w-8 h-8 rounded-full select-none"
-                          src={comment?.authorThumbnails[0]?.url}
-                          alt=""
-                        />
-                        <div className="flex flex-col">
-                          <span className="text-stone-800 font-semibold">
-                            {comment?.author} ·{" "}
-                            <span className="text-stone-600 font-medium text-sm">
-                              {comment?.publishedText}
-                            </span>
-                            {comment?.isEdited ? (
-                              <span className="text-orange-800 font-medium text-sm">
-                                {" "}
-                                (edited)
-                              </span>
-                            ) : null}
-                          </span>
-                          <div
-                            className="text-stone-600"
-                            dangerouslySetInnerHTML={{
-                              __html: comment?.content.replaceAll(
-                                /\n/g,
-                                "<br />"
-                              ),
-                            }}
-                          />
-                          {comment?.likeCount ? (
-                            <div className="gap-2 inline-flex mt-1">
-                              <span className="text-orange-800 inline-flex items-center gap-1">
-                                {commaNumber(comment?.likeCount)}{" "}
-                                <HandThumbUpIcon className="h-4 w-4" />
-                              </span>
-                            </div>
-                          ) : null}
-                        </div>
+              {watchData?.recommendedVideos ? (
+                <div className="flex flex-col items-center">
+                  {/* Video Recommendations */}
+                  {watchData?.recommendedVideos?.length > 0 ? (
+                    <div
+                      className={`flex flex-col gap-3 w-full ${
+                        pipedData?.chapters.length > 0 ? "mt-6" : ""
+                      }`}
+                    >
+                      <div className="flex items-start flex-col w-full h-96 pr-2">
+                        {watchData?.recommendedVideos?.map((video: any) => (
+                          <RecommendationCard video={video} />
+                        ))}
                       </div>
-                    ))
-                  : null}
-              </div>
-            </div>
-          </div>
-          <div className="flex flex-col w-1/4 select-none">
-            <div className="flex flex-col items-center">
-              {/* Chapters */}
-              {pipedData?.chapters.length > 0 ? (
-                <div className="flex flex-col gap-3 w-full">
-                  <span className="text-xl font-bold text-stone-800">
-                    Chapters
-                  </span>
-                  <div className="flex items-start flex-col w-full h-96 overflow-y-scroll scrollbar pr-2 bg-stone-100 p-3 rounded-lg">
-                    {pipedData?.chapters.map((chapter: any) => (
-                      <div
-                        className="flex flex-row gap-3 break-words cursor-pointer rounded-lg transition duration-300 hover:bg-stone-200 active:bg-stone-300 px-2 py-2 w-full"
-                        onClick={() => setChapterTime(chapter?.start)}
-                      >
-                        <img
-                          draggable="false"
-                          className="w-28 h-min rounded-md transition select-none"
-                          src={chapter?.image}
-                          alt=""
-                        />
-                        <div className="flex flex-col gap-1 justify-center">
-                          <span className="font-bold text-stone-800 text-sm">
-                            {chapter?.title}
-                          </span>
-                          <span className="font-semibold text-xs text-orange-600 bg-orange-100 py-0.5 px-1.5 w-min text-center rounded">
-                            {fancyTimeFormat(chapter?.start)}
-                          </span>
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              ) : null}
-            </div>
-            <div className="flex flex-col items-center">
-              {/* Video Recommendations */}
-              {watchData?.recommendedVideos?.length > 0 ? (
-                <div
-                  className={`flex flex-col gap-3 w-full ${
-                    pipedData?.chapters.length > 0 ? "mt-6" : ""
-                  }`}
-                >
-                  <div className="flex items-start flex-col w-full h-96 pr-2">
-                    {watchData?.recommendedVideos?.map((video: any) => (
-                      <RecommendationCard video={video} />
-                    ))}
-                  </div>
+                    </div>
+                  ) : null}
                 </div>
               ) : null}
             </div>
           </div>
-        </div>
+        ) : null}
       </div>
     </div>
   );
