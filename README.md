@@ -10,4 +10,4 @@ Invideo
 **Invideo** is an alternative YouTube frontend.
 
 ## Tools & Tech
-[**Crystal**](https://crystal-crypto.vercel.app/) uses Next.js, TypeScript, and TailwindCSS.
+[**Invideo**](https://invideo.vercel.app/) uses Next.js, TypeScript, and TailwindCSS.
