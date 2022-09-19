@@ -39,5 +39,7 @@ Channel
 
 ## Donate to the project
 Love the project? Donate to support the developers.
-- ETH: 0x99c0031651D08d06bE074168Fb6d2677cfB56f5b
+- <img src="https://cdn.jsdelivr.net/npm/simple-icons@v7/icons/ethereum.svg" height="15"
+      width="15" /> ETH: 0x99c0031651D08d06bE074168Fb6d2677cfB56f5b
+
 Donations are used for keeping the website up.
