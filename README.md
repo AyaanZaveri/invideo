@@ -39,4 +39,5 @@ Channel
 
 ## Donate to the project
 Love the project? Donate to support the developers.
-ETH: 0x99c0031651D08d06bE074168Fb6d2677cfB56f5b
+- ETH: 0x99c0031651D08d06bE074168Fb6d2677cfB56f5b
+Donations are used for keeping the website up.
