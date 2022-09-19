@@ -3,7 +3,8 @@ import React, { useEffect, useState } from "react";
 import { fancyTimeFormat } from "../utils/fancyTimeFormat";
 
 const RecommendationCard = ({ video }: { video: any }) => {
-  const baseUrl = typeof window !== "undefined"
+  const baseUrl =
+    typeof window !== "undefined"
       ? localStorage?.getItem("invidiousInstance")
       : null;
 
@@ -20,12 +21,9 @@ const RecommendationCard = ({ video }: { video: any }) => {
   }, []);
 
   return (
-    <div
-      className="flex flex-row gap-3 break-words cursor-pointer rounded-lg transition duration-200 hover:bg-stone-200 active:bg-stone-300 px-2 py-2 w-full"
-      onClick={() => (location.href = `/watch?v=${video?.videoId}`)}
-    >
+    <div className="flex flex-row gap-3 break-words cursor-pointer rounded-lg transition duration-200 hover:bg-stone-200 active:bg-stone-300 px-2 py-2 w-full">
       <div className="h-min">
-        <div className="h-full w-28 grid relative">
+        <div className="h-full w-28 grid relative" onClick={() => (location.href = `/watch?v=${video?.videoId}`)}>
           <img
             draggable="false"
             className="w-full select-none object-contain min-h-0 h-full rounded-md transition"
@@ -37,7 +35,12 @@ const RecommendationCard = ({ video }: { video: any }) => {
         </div>
       </div>
       <div className="flex flex-col gap-1">
-        <span className="font-bold text-stone-800 text-sm">{video?.title}</span>
+        <span
+          className="font-bold text-stone-800 text-sm"
+          onClick={() => (location.href = `/watch?v=${video?.videoId}`)}
+        >
+          {video?.title}
+        </span>
         <div className="inline-flex items-center gap-1">
           <img
             draggable="false"
@@ -45,7 +48,10 @@ const RecommendationCard = ({ video }: { video: any }) => {
             src={recommendationData?.authorThumbnails[1].url}
             alt=""
           />
-          <span className="font-medium text-orange-800 text-sm">
+          <span
+            className="font-medium text-orange-800 text-sm hover:text-orange-600 transition duration-200"
+            onClick={() => (location.href = video?.authorUrl)}
+          >
             {video?.author}
           </span>
         </div>
