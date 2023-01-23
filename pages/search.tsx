@@ -7,7 +7,7 @@ import Card from "../components/Card";
 
 const Search = () => {
   const { query } = useRouter();
-  const baseUrl = "https://inv.riverside.rocks/api/v1";
+  const baseUrl = "https://invidious.slipfox.xyz/api/v1";
   const [searchRes, setSearchRes] = useState<any>();
 
   const getSearch = (q: string) => {
