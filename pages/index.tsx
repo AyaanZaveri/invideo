@@ -10,7 +10,7 @@ import NavbarIndex from "../components/Navbar";
 import { useRouter } from "next/router";
 
 const Home: NextPage = () => {
-  const baseUrl = "https://invidious.slipfox.xyz/api/v1";
+  const baseUrl = "https://invidious.lunar.icu/api/v1";
   const [trending, setTrending] = useState<any>();
   const [popular, setPopular] = useState<any>();
 

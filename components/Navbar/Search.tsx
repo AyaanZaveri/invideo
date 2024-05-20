@@ -59,7 +59,7 @@ const Search = () => {
     if (invInstance !== undefined && invInstance?.length > 2) {
       localStorage?.setItem("invidiousInstance", invInstance);
     } else {
-      localStorage?.setItem("invidiousInstance", "https://invidious.slipfox.xyz");
+      localStorage?.setItem("invidiousInstance", "https://invidious.lunar.icu");
     }
   }, [invInstance]);
 

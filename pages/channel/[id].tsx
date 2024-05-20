@@ -15,7 +15,7 @@ const Channel = () => {
     typeof window !== "undefined"
       ? localStorage?.getItem("invidiousInstance")
       : null;
-  const pipedBaseUrl = "https://pa.il.ax";
+  const pipedBaseUrl = "https://pipedapi.kavin.rocks";
 
   const [channelData, setChannelData] = useState<any>();
   const [pipedData, setPipedData] = useState<any>();

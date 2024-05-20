@@ -7,7 +7,7 @@ import { fancyTimeFormat } from "../utils/fancyTimeFormat";
 const Card = ({ videoResults }: any) => {
   // const [videoData, setVideoData] = useState<any>();
 
-  // const baseUrl = "https://invidious.slipfox.xyz/api/v1/";
+  // const baseUrl = "https://invidious.lunar.icu/api/v1/";
 
   // const getVideoData = (id: string) => {
   //   axios

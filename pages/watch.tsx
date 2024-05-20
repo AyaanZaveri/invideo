@@ -29,7 +29,7 @@ const Watch = () => {
       ? localStorage?.getItem("invidiousInstance")
       : null;
   // Using Piped to get uploaderVerified and Chapters
-  const pipedBaseUrl = "https://pa.il.ax";
+  const pipedBaseUrl = "https://pipedapi.kavin.rocks";
 
   const [sponsors, setSponsors] = useState<any>([]);
   const [commentsData, setCommentsData] = useState<any>();
